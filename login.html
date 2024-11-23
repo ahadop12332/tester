@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LinkUp</title>
+<style>
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    background-color: #f3f4f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  button {
+    background-color: #0284c7;
+    color: white;
+    padding: 15px 25px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin: 5px;
+  }
+
+  button:hover {
+    background-color: #0369a1;
+    transform: scale(1.05);
+  }
+
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modal-content {
+    background: #ffffff;
+    padding: 30px;
+    width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+    text-align: center;
+  }
+
+  .modal-content h1 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #333333;
+  }
+
+  .modal-content p {
+    font-size: 14px;
+    color: #555555;
+    margin-bottom: 20px;
+  }
+
+  .modal-content input {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #f9f9f9;
+    font-size: 14px;
+  }
+
+  .modal-content input:focus {
+    border-color: #0284c7;
+    outline: none;
+    background-color: #ffffff;
+  }
+
+  .modal-content .btn-group {
+    display: flex;
+    gap: 10px;
+  }
+
+  .modal-content .cancelbtn,
+  .modal-content .submitbtn {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .cancelbtn {
+    background-color: #f44336;
+    color: white;
+  }
+
+  .cancelbtn:hover {
+    background-color: #d32f2f;
+  }
+
+  .submitbtn {
+    background-color: #0284c7;
+    color: white;
+  }
+
+  .submitbtn:hover {
+    background-color: #0369a1;
+  }
+
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    color: #888888;
+    cursor: pointer;
+  }
+
+  .close:hover {
+    color: #555555;
+  }
+</style>
+</head>
+<body>
+<h1>Linkup</h1>
+<button id="openSignup">Sign Up</button>
+<button id="openLogin">Log In</button>
+
+<div id="signupModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('signupModal')">&times;</span>
+    <h1>Create Account</h1>
+    <p>Join us today for an amazing experience.</p>
+    <form id="signupForm">
+      <input type="text" placeholder="Enter Email" name="email" required>
+      <input type="password" placeholder="Enter Password" name="psw" required>
+      <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
+      <div class="btn-group">
+        <button type="button" class="cancelbtn" onclick="closeModal('signupModal')">Cancel</button>
+        <button type="submit" class="submitbtn">Sign Up</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="loginModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('loginModal')">&times;</span>
+    <h1>Welcome Back</h1>
+    <p>Log in to continue your journey.</p>
+    <form id="loginForm">
+      <input type="text" placeholder="Enter Email" name="email" required>
+      <input type="password" placeholder="Enter Password" name="psw" required>
+      <div class="btn-group">
+        <button type="button" class="cancelbtn" onclick="closeModal('loginModal')">Cancel</button>
+        <button type="submit" class="submitbtn">Log In</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  const signupModal = document.getElementById("signupModal");
+  const loginModal = document.getElementById("loginModal");
+  
+  document.getElementById("openSignup").onclick = () => signupModal.style.display = "flex";
+  document.getElementById("openLogin").onclick = () => loginModal.style.display = "flex";
+
+  window.onclick = (event) => {
+    if (event.target === signupModal) signupModal.style.display = "none";
+    if (event.target === loginModal) loginModal.style.display = "none";
+  };
+
+  function closeModal(modalId) {
+    document.getElementById(modalId).style.display = "none";
+  }
+
+  document.getElementById("signupForm").onsubmit = function (e) {
+    e.preventDefault();
+    alert("Sign Up Successful!");
+    closeModal("signupModal");
+  };
+
+  document.getElementById("loginForm").onsubmit = function (e) {
+    e.preventDefault();
+    alert("Login Successful!");
+    closeModal("loginModal");
+  };
+</script>
+
+</body>
+</html>
