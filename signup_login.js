@@ -16,8 +16,17 @@ function closeModal(modalId) {
 document.getElementById("signupForm").onsubmit = function (e) {
   e.preventDefault();
   const Name = document.getElementById("signupname").value;
-  alert(Name);
-  closeModal("signupModal");
+  const Username = document.getElementById("signupusername").value;
+  const Password = document.getElementById("signuppass").value;
+  const Rpassword = document.getElementById("signuprpass").value;
+  if (Password !== Rpassword) {
+    alert("Repeat password is incorrect");
+  } else if (Username.length <= 6 || Name.length <= 6) {
+    alert("Username too small");
+  } else {
+    alert(Name);
+    closeModal("signupModal");
+  }
 };
 
 document.getElementById("loginForm").onsubmit = function (e) {
