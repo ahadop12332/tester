@@ -26,6 +26,10 @@ document.getElementById("signupForm").onsubmit = function (e) {
     alert("Username or Name too short");
   } else if (Password.length <= 8) {
     alert("Password too short");
+  } else if (Password.length >= 12) {
+    alert("Password too big");
+  } else if (Username.length >= 11 || Name.length >= 16) {
+    alert("Name or Username too big");
   } else {
     const url = "https://linkup-backend-production.up.railway.app/signup/";
     const data = {
@@ -69,7 +73,12 @@ document.getElementById("loginForm").onsubmit = function (e) {
     alert("Username too short");
   } else if (Password.length <= 8) {
     alert("Password too short");
-  } else if 
-  alert("Login Successful!");
-  closeModal("loginModal");
+  } else if (Password.length >= 12) {
+    alert("Password too big");
+  } else if (Username.length >= 11) {
+    alert("Username too big");
+  } else {
+    alert("Login not possible at the moment");
+    closeModal("loginModal");
+  }
 };
