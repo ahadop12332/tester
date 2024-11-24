@@ -127,4 +127,11 @@ button:hover {
   right: 15px;
   top: 13px;
   cursor: pointer;
+  font-size: 18px;
+  color: black;
+}
+
+.eye-icon.hidden {
+  font-size: 20px;
+  transform: rotate(45deg);
 }
