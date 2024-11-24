@@ -52,7 +52,7 @@ document.getElementById("signupForm").onsubmit = function (e) {
       })
       .catch((error) => {
         console.error("Error:", error);
-        alert("An error occurred while signing up. Please try again later.");
+        alert("An error occurred while signing up. Please try again later." + error);
       });
   }
 };
