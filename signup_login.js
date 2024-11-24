@@ -42,6 +42,7 @@ document.getElementById("signupForm").onsubmit = function (e) {
     })
       .then((response) => response.json())
       .then((data) => {
+        alert(data)
         if (data.success) {
           alert("Signup successful!" + data.success);
           closeModal("signupModal");
