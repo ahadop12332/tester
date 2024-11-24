@@ -45,6 +45,8 @@ document.getElementById("signupForm").onsubmit = function (e) {
         if (data.message && data.message.startsWith("success")) {
           alert("Signup successful!" + data.message);
           closeModal("signupModal");
+        } else if (data.error && data.error.startsWith("User exists")) {
+          alert("This username already taken");
         } else {
           console.log("ERROR: " + (data || "Unknown error"));
           alert("Signup failed: " + (data.error || "Unknown error"));
