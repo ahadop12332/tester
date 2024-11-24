@@ -7,13 +7,13 @@
   <link rel="stylesheet" href="signup_login.css">
 </head>
 <body>
-  <centre>
+  <center>
     <h1>LinkUp</h1>
     <br>
     <button id="openSignup">Sign Up</button>
     <br>
     <button id="openLogin">Log In</button>
-  </centre>
+  </center>
 
   <div id="signupModal" class="modal">
     <div class="modal-content">
@@ -21,9 +21,9 @@
       <h1>Create Account</h1>
       <p>Join us today for an amazing experience.</p>
       <form id="signupForm">
-        <input type="text" id="signupname" placeholder="Name" name="name" required>
-        <input type="text" id="signupusername" placeholder="Username" name="username" required>
-        <input type="password" id="signuppass" placeholder="Password" name="psw" required>
+        <input type="text" id="signupname" placeholder="Name" name="name" minlength="4" maxlength="15" required pattern="[^ ]+">
+        <input type="text" id="signupusername" placeholder="Username" name="username" minlength="5" maxlength="10" required pattern="^[a-zA-Z_]+$">
+        <input type="password" id="signuppass" placeholder="Password" name="psw" minlength="9" maxlength="11" required pattern="^(?=.*[!@#$%^&*])(?=.*[0-9])[^ ]+$">
         <input type="password" id="signuprpass" placeholder="Repeat password" name="psw-repeat" required>
         <div class="btn-group">
           <button type="button" class="cancelbtn" onclick="closeModal('signupModal')">Cancel</button>
@@ -39,8 +39,8 @@
       <h1>Welcome Back</h1>
       <p>Log in to continue your journey.</p>
       <form id="loginForm">
-        <input type="text" placeholder="Username" id="loginusername" name="Username" required>
-        <input type="password" placeholder="Password" id="loginpass" name="psw" required>
+        <input type="text" placeholder="Username" id="loginusername" name="Username" required pattern="^[a-zA-Z_]+$">
+        <input type="password" placeholder="Password" id="loginpass" name="psw" minlength="9" maxlength="11" required pattern="^(?=.*[!@#$%^&*])(?=.*[0-9])[^ ]+$">
         <div class="btn-group">
           <button type="button" class="cancelbtn" onclick="closeModal('loginModal')">Cancel</button>
           <button type="submit" class="submitbtn">Log In</button>
