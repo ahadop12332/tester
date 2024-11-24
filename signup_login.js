@@ -67,7 +67,7 @@ document.getElementById("signupForm").onsubmit = function (e) {
 
 document.getElementById("loginForm").onsubmit = function (e) {
   e.preventDefault();
-  const Userame = document.getElementById("loginusername").value;
+  const Username = document.getElementById("loginusername").value;
   const Password = document.getElementById("loginpass").value;
   if (Username.length <= 5) {
     alert("Username too short");
