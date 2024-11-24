@@ -99,11 +99,16 @@ document.getElementById("loginForm").onsubmit = function (e) {
             alert("Login successful!");
             document.cookie = `session=${data.message.split("success: ")[1]}`;
           } else if (data.error) {
+            if (data.error.startsWith("WRONG PASSWORD")) {
+              alert("Incorrect password");
+            } else if (data.error.startsWith("INVALID USER") {
+              alert("Invalid user!");
+            }
             alert("Login failed: " + data.error);
             console.error("Login error: ", data.error);
           } else {
-            alert("Unexpected error occurred.");
-            console.error("Unexpected response: ", data);
+            alert("Somthing went wrong, Try again later!");
+            console.error("New error: ", data.error);
           }
         })
         .catch((error) => {
