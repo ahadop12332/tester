@@ -26,7 +26,7 @@ document.getElementById("signupForm").onsubmit = function (e) {
     alert("Username or Name too short");
   } else if (Password.length <= 8) {
     alert("Password too short");
-  } else if (Password.length >= 12) {
+  } else if (Password.length >= 15) {
     alert("Password too big");
   } else if (Username.length >= 11 || Name.length >= 16) {
     alert("Name or Username too big");
