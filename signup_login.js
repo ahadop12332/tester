@@ -43,7 +43,9 @@ document.getElementById("signupForm").onsubmit = function (e) {
       .then((response) => response.json())
       .then((data) => {
         if (data.message && data.message.startsWith("success")) {
-          alert("Signup successful!" + data.message);
+          const session = data.message.split("success: ")[1];
+          document.cookie = `session=${session}`;
+          alert("Signup successful!");
           closeModal("signupModal");
         } else if (data.error && data.error.startsWith("User exists")) {
           alert("This username already taken");
