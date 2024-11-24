@@ -78,7 +78,11 @@ document.getElementById("loginForm").onsubmit = function (e) {
   } else if (Username.length >= 11) {
     alert("Username too big");
   } else {
-    alert("Login not possible at the moment");
-    closeModal("loginModal");
+    try {
+      alert("Login not possible at the moment");
+      closeModal("loginModal");
+    } catch (error) {
+      alert("Error: " + error);
+    }
   }
 };
