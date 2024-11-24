@@ -63,6 +63,13 @@ document.getElementById("signupForm").onsubmit = function (e) {
 
 document.getElementById("loginForm").onsubmit = function (e) {
   e.preventDefault();
+  const Userame = document.getElementById("loginusername").value;
+  const Password = document.getElementById("loginpass").value;
+  if (Username.length <= 5) {
+    alert("Username too short");
+  } else if (Password.length <= 8) {
+    alert("Password too short");
+  } else if 
   alert("Login Successful!");
   closeModal("loginModal");
 };
