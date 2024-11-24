@@ -69,6 +69,7 @@ document.getElementById("loginForm").onsubmit = function (e) {
   e.preventDefault();
   const Username = document.getElementById("loginusername").value;
   const Password = document.getElementById("loginpass").value;
+
   if (Username.length <= 5) {
     alert("Username too short");
   } else if (Password.length <= 8) {
@@ -79,10 +80,39 @@ document.getElementById("loginForm").onsubmit = function (e) {
     alert("Username too big");
   } else {
     try {
-      alert("Login not possible at the moment");
-      closeModal("loginModal");
+      const url = "https://linkup-backend-production.up.railway.app/login/";
+      const data = {
+        username: Username,
+        password: Password,
+      };
+      const headers = { "Content-Type": "application/json" };
+
+      fetch(url, {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify(data),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.message && data.message.startsWith("success")) {
+            closeModal("loginModal");
+            alert("Login successful!");
+            document.cookie = `session=${data.message.split("success: ")[1]}`;
+          } else if (data.error) {
+            alert("Login failed: " + data.error);
+            console.error("Login error: ", data.error);
+          } else {
+            alert("Unexpected error occurred.");
+            console.error("Unexpected response: ", data);
+          }
+        })
+        .catch((error) => {
+          alert("Error: " + error);
+          console.error("Error on login: ", error);
+        });
     } catch (error) {
-      alert("Error: " + error);
+      alert("Error: " + error.message);
+      console.error("Error on login: ", error);
     }
   }
 };
