@@ -25,7 +25,7 @@
         <input type="text" id="signupusername" placeholder="Username" name="username" minlength="5" maxlength="10" required pattern="^[a-zA-Z_]+$">
         <div style="position: relative;">
           <input type="password" id="signuppass" placeholder="Password" name="psw" minlength="9" maxlength="11" required pattern="^(?=.*[a-zA-Z])(?=.*[!@#$%^&*])(?=.*[0-9])[^ ]+$">
-          <span class="eye-icon" onclick="togglePassword('signuppass')">&#128065;</span>
+          <span class="eye-icon" id="toggleEye" onclick="togglePasswordVisibility('signuppass', 'toggleEye')">&#128065;</span>
         </div>
         <input type="password" id="signuprpass" placeholder="Repeat password" name="psw-repeat" required>
         <div class="btn-group">
@@ -45,7 +45,7 @@
         <input type="text" placeholder="Username" id="loginusername" name="Username" required pattern="^[a-zA-Z_]+$">
         <div style="position: relative;">
           <input type="password" placeholder="Password" id="loginpass" name="psw" minlength="9" maxlength="11" required pattern="^(?=.*[a-zA-Z])(?=.*[!@#$%^&*])(?=.*[0-9])[^ ]+$">
-          <span class="eye-icon" onclick="togglePassword('loginpass')">&#128065;</span>
+          <span class="eye-icon" id="toggleEyeLogin" onclick="togglePasswordVisibility('loginpass', 'toggleEyeLogin')">&#128065;</span>
         </div>
         <div class="btn-group">
           <button type="button" class="cancelbtn" onclick="closeModal('loginModal')">Cancel</button>
@@ -56,5 +56,19 @@
   </div>
 
   <script src="signup_login.js"></script>
+  <script>
+    function togglePasswordVisibility(passwordId, eyeIconId) {
+      const passwordField = document.getElementById(passwordId);
+      const eyeIcon = document.getElementById(eyeIconId);
+      
+      if (passwordField.type === "password") {
+        passwordField.type = "text";
+        eyeIcon.classList.add('hidden');
+      } else {
+        passwordField.type = "password";
+        eyeIcon.classList.remove('hidden');
+      }
+    }
+  </script>
 </body>
 </html>
