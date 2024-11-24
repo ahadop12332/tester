@@ -47,7 +47,7 @@ document.getElementById("signupForm").onsubmit = function (e) {
           closeModal("signupModal");
         } else {
           console.log("ERROR: " + (data || "Unknown error"));
-          alert("Signup failed: " + (data || "Unknown error"));
+          alert("Signup failed: " + (data.error || "Unknown error"));
         }
       })
       .catch((error) => {
