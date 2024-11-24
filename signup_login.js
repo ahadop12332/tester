@@ -42,11 +42,12 @@ document.getElementById("signupForm").onsubmit = function (e) {
     })
       .then((response) => response.json())
       .then((data) => {
-        if (data.message.success) {
+        if (data.message && data.message.startsWith("success")) {
           alert("Signup successful!" + data.message.success);
           closeModal("signupModal");
         } else {
-          alert("Signup failed: " + (data.message || "Unknown error"));
+          console.log("ERROR: " + (data || "Unknown error"));
+          alert("Signup failed: " + (data || "Unknown error"));
         }
       })
       .catch((error) => {
