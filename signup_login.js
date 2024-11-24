@@ -21,8 +21,10 @@ document.getElementById("signupForm").onsubmit = function (e) {
   const Rpassword = document.getElementById("signuprpass").value;
   if (Password !== Rpassword) {
     alert("Repeat password is incorrect");
-  } else if (Username.length <= 6 || Name.length <= 6) {
+  } else if (Username.length <= 5 || Name.length <= 3) {
     alert("Username too small");
+  } else if (Password.length <= 8) {
+    alert("Password too small");
   } else {
     alert(Name);
     closeModal("signupModal");
