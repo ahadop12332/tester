@@ -42,9 +42,8 @@ document.getElementById("signupForm").onsubmit = function (e) {
     })
       .then((response) => response.json())
       .then((data) => {
-        alert(data)
-        if (data.success) {
-          alert("Signup successful!" + data.success);
+        if (data.message.success) {
+          alert("Signup successful!" + data.message.success);
           closeModal("signupModal");
         } else {
           alert("Signup failed: " + (data.message || "Unknown error"));
