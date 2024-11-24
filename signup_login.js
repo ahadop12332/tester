@@ -54,12 +54,10 @@ document.getElementById("signupForm").onsubmit = function (e) {
         } else if (data.error && data.error.startsWith("User exists")) {
           alert("This username already taken");
         } else {
-          console.log("ERROR: " + (data || "Unknown error"));
           alert("Signup failed: " + (data.error || "Unknown error"));
         }
       })
       .catch((error) => {
-        console.error("Error:", error);
         alert("An error occurred while signing up. Please try again later." + error);
       });
   }
@@ -101,23 +99,20 @@ document.getElementById("loginForm").onsubmit = function (e) {
           } else if (data.error) {
             if (data.error.startsWith("WRONG PASSWORD")) {
               alert("Incorrect password");
-            } else if (data.error.startsWith("INVALID USER") {
+            } else if (data.error.startsWith("INVALID USER")) {
               alert("Invalid user!");
+            } else {
+              alert("Login failed: " + data.error);
             }
-            alert("Login failed: " + data.error);
-            console.error("Login error: ", data.error);
           } else {
-            alert("Somthing went wrong, Try again later!");
-            console.error("New error: ", data.error);
+            alert("Something went wrong, Try again later!");
           }
         })
         .catch((error) => {
           alert("Error: " + error);
-          console.error("Error on login: ", error);
         });
     } catch (error) {
       alert("Error: " + error.message);
-      console.error("Error on login: ", error);
     }
   }
 };
