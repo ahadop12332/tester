@@ -122,10 +122,9 @@ button:hover {
   color: #555555;
 }
 
-.show-password {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 14px;
-  color: #555555;
+.eye-icon {
+  position: absolute;
+  right: 15px;
+  top: 13px;
+  cursor: pointer;
 }
