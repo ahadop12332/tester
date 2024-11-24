@@ -15,7 +15,8 @@ function closeModal(modalId) {
 
 document.getElementById("signupForm").onsubmit = function (e) {
   e.preventDefault();
-  alert("Sign Up Successful!");
+  const Name = document.getElementById("signupname").value;
+  alert(Name);
   closeModal("signupModal");
 };
 
