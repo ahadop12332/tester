@@ -21,10 +21,10 @@
       <h1>Create Account</h1>
       <p>Join us today for an amazing experience.</p>
       <form id="signupForm">
-        <input type="text" id="signupname" placeholder="Name" name="name" minlength="4" maxlength="15" required pattern="[^ ]+">
+        <input type="text" id="signupname" placeholder="Name" name="name" minlength="4" maxlength="15" required>
         <input type="text" id="signupusername" placeholder="Username" name="username" minlength="5" maxlength="10" required pattern="^[a-zA-Z_]+$">
         <div style="position: relative;">
-          <input type="password" id="signuppass" placeholder="Password" name="psw" minlength="9" maxlength="11" required pattern="^(?=.*[a-zA-Z])(?=.*[!@#$%^&*])(?=.*[0-9])[^ ]+$">
+          <input type="password" id="signuppass" placeholder="Password" name="psw" minlength="9" maxlength="14" required pattern="^(?=.*[a-zA-Z])(?=.*[!@#$%^&*])(?=.*[0-9])[^ ]+$">
           <span class="eye-icon" id="toggleEye" onclick="togglePasswordVisibility('signuppass', 'toggleEye')">&#128065;</span>
         </div>
         <input type="password" id="signuprpass" placeholder="Repeat password" name="psw-repeat" required>
