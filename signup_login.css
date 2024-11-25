@@ -94,7 +94,7 @@ body {
 
 .password-wrapper label {
   position: absolute;
-  top: 49%;
+  top: 48%;
   left: 285px;
   transform: translateY(-50%);
   cursor: pointer;
