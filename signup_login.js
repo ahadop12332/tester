@@ -1,18 +1,3 @@
-const signupModal = document.getElementById("signupModal");
-const loginModal = document.getElementById("loginModal");
-
-document.getElementById("openSignup").onclick = () => signupModal.style.display = "flex";
-document.getElementById("openLogin").onclick = () => loginModal.style.display = "flex";
-
-window.onclick = (event) => {
-  if (event.target === signupModal) signupModal.style.display = "none";
-  if (event.target === loginModal) loginModal.style.display = "none";
-};
-
-function closeModal(modalId) {
-  document.getElementById(modalId).style.display = "none";
-}
-
 document.getElementById("signupForm").onsubmit = function (e) {
   e.preventDefault();
   const Name = document.getElementById("signupname").value;
@@ -24,10 +9,8 @@ document.getElementById("signupForm").onsubmit = function (e) {
     alert("Repeat password is incorrect");
   } else if (Username.length <= 5 || Name.length <= 3) {
     alert("Username or Name too short");
-  } else if (Password.length <= 8) {
-    alert("Password too short");
-  } else if (Password.length >= 15) {
-    alert("Password too big");
+  } else if (Password.length <= 8 || Password.length >= 15) {
+    alert("Password length should be between 9 and 14");
   } else if (Username.length >= 11 || Name.length >= 16) {
     alert("Name or Username too big");
   } else {
@@ -37,29 +20,23 @@ document.getElementById("signupForm").onsubmit = function (e) {
       username: Username,
       password: Password,
     };
-    const headers = { "Content-Type": "application/json" };
-
     fetch(url, {
       method: "POST",
-      headers: headers,
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     })
       .then((response) => response.json())
       .then((data) => {
-        if (data.message && data.message.startsWith("success")) {
-          const session = data.message.split("success: ")[1];
-          document.cookie = `session=${session}`;
+        if (data.message?.startsWith("success")) {
+          document.cookie = `session=${data.message.split("success: ")[1]}`;
           alert("Signup successful!");
-          closeModal("signupModal");
-        } else if (data.error && data.error.startsWith("User exists")) {
-          alert("This username already taken");
+        } else if (data.error?.startsWith("User exists")) {
+          alert("This username is already taken");
         } else {
           alert("Signup failed: " + (data.error || "Unknown error"));
         }
       })
-      .catch((error) => {
-        alert("An error occurred while signing up. Please try again later." + error);
-      });
+      .catch((error) => alert("An error occurred: " + error));
   }
 };
 
@@ -68,51 +45,36 @@ document.getElementById("loginForm").onsubmit = function (e) {
   const Username = document.getElementById("loginusername").value;
   const Password = document.getElementById("loginpass").value;
 
-  if (Username.length <= 5) {
-    alert("Username too short");
-  } else if (Password.length <= 8) {
-    alert("Password too short");
-  } else if (Password.length >= 12) {
-    alert("Password too big");
-  } else if (Username.length >= 11) {
-    alert("Username too big");
+  if (Username.length <= 5 || Username.length >= 11) {
+    alert("Username length should be between 6 and 10");
+  } else if (Password.length <= 8 || Password.length >= 12) {
+    alert("Password length should be between 9 and 11");
   } else {
-    try {
-      const url = "https://linkup-backend-production.up.railway.app/login/";
-      const data = {
-        username: Username,
-        password: Password,
-      };
-      const headers = { "Content-Type": "application/json" };
-
-      fetch(url, {
-        method: "POST",
-        headers: headers,
-        body: JSON.stringify(data),
+    const url = "https://linkup-backend-production.up.railway.app/login/";
+    const data = { username: Username, password: Password };
+    fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.message?.startsWith("success")) {
+          document.cookie = `session=${data.message.split("success: ")[1]}`;
+          alert("Login successful!");
+        } else if (data.error?.startsWith("WRONG PASSWORD")) {
+          alert("Incorrect password");
+        } else if (data.error?.startsWith("INVALID USER")) {
+          alert("Invalid user!");
+        } else {
+          alert("Login failed: " + (data.error || "Unknown error"));
+        }
       })
-        .then((response) => response.json())
-        .then((data) => {
-          if (data.message && data.message.startsWith("success")) {
-            closeModal("loginModal");
-            alert("Login successful!");
-            document.cookie = `session=${data.message.split("success: ")[1]}`;
-          } else if (data.error) {
-            if (data.error.startsWith("WRONG PASSWORD")) {
-              alert("Incorrect password");
-            } else if (data.error.startsWith("INVALID USER")) {
-              alert("Invalid user!");
-            } else {
-              alert("Login failed: " + data.error);
-            }
-          } else {
-            alert("Something went wrong, Try again later!");
-          }
-        })
-        .catch((error) => {
-          alert("Error: " + error);
-        });
-    } catch (error) {
-      alert("Error: " + error.message);
-    }
+      .catch((error) => alert("Error: " + error));
   }
 };
+
+function togglePasswordVisibility(id) {
+  const input = document.getElementById(id);
+  input.type = input.type === "password" ? "text" : "password";
+}
