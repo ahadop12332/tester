@@ -7,67 +7,59 @@
   <link rel="stylesheet" href="signup_login.css">
 </head>
 <body>
-  <center>
-    <h1>LinkUp</h1>
-    <br>
-    <button id="openSignup">Sign Up</button>
-    <br>
-    <button id="openLogin">Log In</button>
-  </center>
-
-  <div id="signupModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal('signupModal')">&times;</span>
-      <h1>Create Account</h1>
-      <p>Join us today for an amazing experience.</p>
+  <div class="auth-container">
+    <div class="auth-box">
+      <h1><span class="linkup-text">LinkUp</span></h1>
+      <h2>Create Account</h2>
+      <p>Forgot telegram & whatsapp use us.</p>
       <form id="signupForm">
         <input type="text" id="signupname" placeholder="Name" name="name" minlength="4" maxlength="15" required>
         <input type="text" id="signupusername" placeholder="Username" name="username" minlength="5" maxlength="10" required pattern="^[a-zA-Z_]+$">
-        <div style="position: relative;">
+        <div class="password-wrapper">
           <input type="password" id="signuppass" placeholder="Password" name="psw" minlength="9" maxlength="14" required pattern="^(?=.*[a-zA-Z])(?=.*[!@#$%^&*])(?=.*[0-9])[^ ]+$">
-          <span class="eye-icon" id="toggleEye" onclick="togglePasswordVisibility('signuppass', 'toggleEye')">&#128065;</span>
+          <label>
+            <input type="checkbox" id="showPassword" onclick="togglePasswordVisibility('signuppass')">
+          </label>
         </div>
         <input type="password" id="signuprpass" placeholder="Repeat password" name="psw-repeat" required>
-        <div class="btn-group">
-          <button type="button" class="cancelbtn" onclick="closeModal('signupModal')">Cancel</button>
-          <button type="submit" class="submitbtn">Sign Up</button>
+        <button type="submit" class="submitbtn">Sign Up</button>
+        <div class="alt-option">
+          <p>Already have an account? <a href="#" onclick="toggleToLogin()">Log In</a></p>
         </div>
       </form>
     </div>
-  </div>
-
-  <div id="loginModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal('loginModal')">&times;</span>
-      <h1>Welcome Back</h1>
+    <div class="auth-box" style="display: none;" id="loginSection">
+      <h1><span class="linkup-text">LinkUp</span></h1>
+      <h2>Welcome Back</h2>
       <p>Log in to continue your journey.</p>
       <form id="loginForm">
-        <input type="text" placeholder="Username" id="loginusername" name="Username" required pattern="^[a-zA-Z_]+$">
-        <div style="position: relative;">
-          <input type="password" placeholder="Password" id="loginpass" name="psw" minlength="9" maxlength="11" required pattern="^(?=.*[a-zA-Z])(?=.*[!@#$%^&*])(?=.*[0-9])[^ ]+$">
-          <span class="eye-icon" id="toggleEyeLogin" onclick="togglePasswordVisibility('loginpass', 'toggleEyeLogin')">&#128065;</span>
+        <input type="text" id="loginusername" placeholder="Username" name="Username" required pattern="^[a-zA-Z_]+$">
+        <div class="password-wrapper">
+          <input type="password" id="loginpass" placeholder="Password" name="psw" minlength="9" maxlength="14" required pattern="^(?=.*[a-zA-Z])(?=.*[!@#$%^&*])(?=.*[0-9])[^ ]+$">
+          <label>
+            <input type="checkbox" id="showLoginPassword" onclick="togglePasswordVisibility('loginpass')">
+          </label>
         </div>
-        <div class="btn-group">
-          <button type="button" class="cancelbtn" onclick="closeModal('loginModal')">Cancel</button>
-          <button type="submit" class="submitbtn">Log In</button>
+        <button type="submit" class="submitbtn">Log In</button>
+        <div class="alt-option">
+          <p>Don't have an account? <a href="#" onclick="toggleToSignup()">Sign Up</a></p>
         </div>
       </form>
     </div>
   </div>
-
   <script src="signup_login.js"></script>
   <script>
-    function togglePasswordVisibility(passwordId, eyeIconId) {
-      const passwordField = document.getElementById(passwordId);
-      const eyeIcon = document.getElementById(eyeIconId);
-      
-      if (passwordField.type === "password") {
-        passwordField.type = "text";
-        eyeIcon.classList.add('hidden');
-      } else {
-        passwordField.type = "password";
-        eyeIcon.classList.remove('hidden');
-      }
+    function toggleToLogin() {
+      document.getElementById('signupForm').parentElement.style.display = 'none';
+      document.getElementById('loginSection').style.display = 'block';
+    }
+    function toggleToSignup() {
+      document.getElementById('loginSection').style.display = 'none';
+      document.getElementById('signupForm').parentElement.style.display = 'block';
+    }
+    function togglePasswordVisibility(id) {
+      const input = document.getElementById(id);
+      input.type = input.type === "password" ? "text" : "password";
     }
   </script>
 </body>
