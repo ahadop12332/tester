@@ -7,7 +7,7 @@ document.getElementById("signupForm").onsubmit = function (e) {
 
   if (Password !== Rpassword) {
     alert("Repeat password is incorrect");
-  } else if (Username.length <= 5 || Name.length <= 3) {
+  } else if (Username.length <= 3 || Name.length <= 3) {
     alert("Username or Name too short");
   } else if (Password.length <= 8 || Password.length >= 15) {
     alert("Password length should be between 9 and 14");
@@ -45,7 +45,7 @@ document.getElementById("loginForm").onsubmit = function (e) {
   const Username = document.getElementById("loginusername").value;
   const Password = document.getElementById("loginpass").value;
 
-  if (Username.length <= 5 || Username.length >= 14) {
+  if (Username.length <= 3 || Username.length >= 14) {
     alert("Username length should be between 6 and 14");
   } else if (Password.length <= 8 || Password.length >= 15) {
     alert("Password length should be between 9 and 14");
