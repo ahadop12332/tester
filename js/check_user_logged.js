@@ -31,6 +31,6 @@ if (session == null) {
       }
     })
     .catch((err) => {
-      hm.innerHTML = `An error occurred: ${err.message}`;
+      hm.innerHTML = `An error occurred: ${err.message}, ${data.error}`;
     });
 }
