@@ -24,13 +24,13 @@ if (session == null) {
   })
     .then((response) => response.json())
     .then((data) => {
-      if (!data.error && data.success.startsWith('Same')) {
+      if (data.success && data.success.startsWith('Same')) {
         hm.innerHTML = `Welcome back! Your session is: ${session}`;
       } else {
         hm.innerHTML = `Click <a href="signup_login.html">here</a> for signup`;
       }
     })
     .catch((err) => {
-      hm.innerHTML = `An error occurred: ${err.message}, ${data.error}`;
+      hm.innerHTML = `error occurred: ${err.message}, ${data.error}`;
     });
 }
