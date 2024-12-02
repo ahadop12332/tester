@@ -24,7 +24,7 @@ if (session == null) {
   })
     .then((response) => response.json())
     .then((data) => {
-      if (!data.success.startsWith('Same')) {
+      if (data.success.startsWith('Same')) {
         hm.innerHTML = `Welcome back! Your session is: ${session}`;
       } else {
         hm.innerHTML = `Click <a href="signup_login.html">here</a> for signup`;
