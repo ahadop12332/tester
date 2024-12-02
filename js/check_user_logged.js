@@ -32,5 +32,6 @@ if (session == null) {
     })
     .catch((err) => {
       hm.innerHTML = `error occurred: ${err.message}, ${data.error}`;
+      hm.innerHTML += "Hlo";
     });
 }
