@@ -13,7 +13,7 @@ function getCookie(name) {
 
 const session = getCookie('session');
 if (session == null) {
-  hm.textContent = "Can't find any sessions"
+  hm.innerHTML = `Click <a href="signup_login.html">here</a> for signup`
 } else {
   hm.textContent = session
 }
