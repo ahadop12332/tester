@@ -1,12 +1,17 @@
-<p id='change_txt'></p>
+<p id="change_txt"></p>
 
-<script src='js/check_user_logged.js'></script>
+<script src="js/check_user_logged.js"></script>
 <script>
-  hm = document.getElementById('change_txt');
-  const session_stats = check_session();
-  if (session_stats == 'redirect') {
-    hm.textContent = "You are already logged, redirecting not possible at the moment wait for future updates! (ily)"
-  } else {
-    hm.innerHTML = `Click <a href="signup_login.html">here</a> for signup`
+  async function updatePage() {
+    const hm = document.getElementById('change_txt');
+    const session_stats = await check_session(); // Await the promise resolution
+
+    if (session_stats === 'redirect') {
+      hm.textContent = "You are already logged, redirecting not possible at the moment wait for future updates! (ily)";
+    } else {
+      hm.innerHTML = `Click <a href="signup_login.html">here</a> for signup`;
+    }
   }
+  updatePage();
 </script>
+<!-- I love you mano -->
