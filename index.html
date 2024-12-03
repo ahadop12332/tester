@@ -1,2 +1,12 @@
 <p id='change_txt'></p>
+
 <script src='js/check_user_logged.js'></script>
+<script>
+  hm = document.getElementById('change_txt');
+  const session_stats = check_session();
+  if (session_stats == 'redirect') {
+    hm.textContent = "You are already logged, redirecting not possible at the moment wait for future updates! (ily)"
+  } else {
+    hm.textContent = `Click <a href="signup_login.html">here</a> for signup`
+  }
+</script>
