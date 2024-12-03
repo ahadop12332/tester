@@ -35,3 +35,5 @@ async function check_session() {
     }
   }
 }
+
+// i love you mano, fr
