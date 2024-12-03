@@ -25,13 +25,13 @@ if (session == null) {
     .then((response) => response.json())
     .then((data) => {
       if (data.success && typeof data.success === "string" && data.success == 'Same') {
-        hm.innerHTML = `Welcome back! Your session is: ${session}`;
+        hm.innerHTML = `Seems like you are already logged, Redirecting not possible now wait for future update, (ily)`;
       } else {
         hm.innerHTML = `Click <a href="signup_login.html">here</a> for signup`;
       }
     })
     .catch((err) => {
-      hm.innerHTML = 'hi'
-      hm.innerHTML += `error occurred: ${err.message}, ${data.error}`;
+      console.log("Error: " + err.message + " " + data.error)
+      hm.innerHTML = `Click <a href="signup_login.html">here</a> for signup`;
     });
 }
