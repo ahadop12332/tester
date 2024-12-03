@@ -4,7 +4,7 @@
 <script>
   async function updatePage() {
     const hm = document.getElementById('change_txt');
-    const session_stats = await check_session(); // Await the promise resolution
+    const session_stats = await check_session();
 
     if (session_stats === 'redirect') {
       hm.textContent = "You are already logged, redirecting not possible at the moment wait for future updates! (ily)";
