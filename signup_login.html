@@ -49,6 +49,13 @@
   </div>
   <script src="js/signup_login.js"></script>
   <script>
+    async function check_logged() {
+      const session_stats = await check_session();
+      if (session_stats === 'redirect') {
+        window.location.href = "/index.html";
+      }
+    }
+    
     function toggleToLogin() {
       document.getElementById('signupForm').parentElement.style.display = 'none';
       document.getElementById('loginSection').style.display = 'block';
@@ -61,6 +68,7 @@
       const input = document.getElementById(id);
       input.type = input.type === "password" ? "text" : "password";
     }
+    check_logged()
   </script>
 </body>
 <!-- Irly mano -->
