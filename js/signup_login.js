@@ -1,9 +1,10 @@
 document.getElementById("signupForm").onsubmit = function (e) {
   e.preventDefault();
   const Name = document.getElementById("signupname").value;
-  const Username = document.getElementById("signupusername").value;
+  var Username = document.getElementById("signupusername").value;
   const Password = document.getElementById("signuppass").value;
   const Rpassword = document.getElementById("signuprpass").value;
+  Username = Username.toLowerCase();
 
   if (Password !== Rpassword) {
     alert("Repeat password is incorrect");
@@ -30,6 +31,7 @@ document.getElementById("signupForm").onsubmit = function (e) {
         if (data.message?.startsWith("success")) {
           document.cookie = `session=${data.message.split("success: ")[1]}`;
           alert("Signup successful!");
+          window.location.href = "/index.html";
         } else if (data.error?.startsWith("User exists")) {
           alert("This username is already taken");
         } else {
@@ -42,8 +44,9 @@ document.getElementById("signupForm").onsubmit = function (e) {
 
 document.getElementById("loginForm").onsubmit = function (e) {
   e.preventDefault();
-  const Username = document.getElementById("loginusername").value;
+  var Username = document.getElementById("loginusername").value;
   const Password = document.getElementById("loginpass").value;
+  Username = Username.toLowerCase();
 
   if (Username.length <= 3 || Username.length >= 14) {
     alert("Username length should be between 6 and 14");
@@ -62,6 +65,7 @@ document.getElementById("loginForm").onsubmit = function (e) {
         if (data.message?.startsWith("success")) {
           document.cookie = `session=${data.message.split("success: ")[1]}`;
           alert("Login successful!");
+          window.location.href = "/index.html";
         } else if (data.error?.startsWith("WRONG PASSWORD")) {
           alert("Incorrect password");
         } else if (data.error?.startsWith("INVALID USER")) {
