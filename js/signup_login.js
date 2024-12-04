@@ -71,10 +71,10 @@ document.getElementById("loginForm").onsubmit = function (e) {
         } else if (data.error?.startsWith("INVALID USER")) {
           alert("Invalid user!");
         } else {
-          alert("Login failed: " + (data.error || "Unknown error"));
+          alert("Login failed: " + (String(data.error) || "Unknown error"));
         }
       })
-      .catch((error) => alert("Error: " + error));
+      .catch((error) => alert("Error: " + String(error)));
   }
 };
 
