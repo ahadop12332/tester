@@ -74,7 +74,7 @@ document.getElementById("loginForm").onsubmit = function (e) {
           alert("Login failed: " + (String(data.error) || "Unknown error"));
         }
       })
-      .catch((error) => alert("Error: " + String(error)));
+      .catch((error) => alert("Error: " + String(data.error)));
   }
 };
 
