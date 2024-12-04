@@ -190,7 +190,7 @@ body {
 #messageFrom {
   margin-bottom: 5px;
   position: relative;
-  top: 100px;
+  top: 90px;
   left: 15px;
   background-color: #16161A;
   color: white;
@@ -215,7 +215,7 @@ body {
 #messageTo {
   margin-bottom: 5px;
   position: relative;
-  top: 100px;
+  top: 90px;
   left: 50vw;
   text-indent: 7px;
   background-color: #16161A;
