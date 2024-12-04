@@ -7,7 +7,8 @@
     const session_stats = await check_session();
 
     if (session_stats === 'redirect') {
-      hm.textContent = "You are already logged, redirecting not possible at the moment wait for future updates! (ily)";
+      hm.textContent = "Welcome Alpha user, redirecting to test chat page! (if this doesn't happen go chat.html)";
+      window.location.href = "/chat.html";
     } else {
       hm.innerHTML = `Click <a href="signup_login.html">here</a> for signup`;
     }
