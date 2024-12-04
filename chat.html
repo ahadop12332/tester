@@ -71,5 +71,17 @@
 <button onclick="toggleDarkMode()">Toggle Dark Mode</button></div>
 
 <script src="js/chat.js"></script>
+
+<script src="js/check_user_logged.js"></script>
+<script>
+  async function updatePage() {
+    const session_stats = await check_session();
+
+    if (!session_stats === 'redirect') {
+      window.location.href = "/index.html";
+    }
+  }
+  updatePage();
+</script>
 </body>
   </html>
