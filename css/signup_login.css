@@ -65,6 +65,7 @@ body {
   font-size: 16px;
   border-radius: 5px;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
   width: auto;
   margin-top: 10px;
 }
@@ -98,10 +99,12 @@ body {
   right: 3%;
   transform: translateY(-50%);
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .password-wrapper input[type="checkbox"] {
   width: 15px;
   height: 15px;
-  cursor: 0px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
   }
