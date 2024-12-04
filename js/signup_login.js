@@ -68,7 +68,7 @@ document.getElementById("loginForm").onsubmit = function (e) {
           window.location.href = "/index.html";
         } else if (data.error?.startsWith("WRONG PASSWORD")) {
           alert("Incorrect password");
-        } else if (data.error?.startsWith("INVALID USER")) {
+        } else if (data.error?.startsWith("IN")) {
           alert("Invalid user!");
         } else {
           alert("Login failed: " + (String(data.error) || "Unknown error"));
