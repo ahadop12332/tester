@@ -203,7 +203,7 @@ body {
   word-wrap: break-word;
 }
 
-#msgTimeFrom {
+#msgTime {
   text-align: right;
   color: white;
   position: relative;
@@ -216,7 +216,7 @@ body {
   margin-bottom: 5px;
   position: relative;
   top: 90px;
-  left: 50vw;
+  left: 180px;
   text-indent: 7px;
   background-color: #16161A;
   color: white;
@@ -228,12 +228,3 @@ body {
   min-height: 15px;
   word-wrap: break-word;
 }
-
-#msgTimeTo {
-  text-align: right;
-  color: white;
-  position: relative;
-  bottom: 6px;
-  font-size: 10px;
-}
-
