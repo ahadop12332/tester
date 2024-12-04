@@ -122,8 +122,8 @@ body {
   left: 0px;
   background: #16161A;
   position: absolute;
-  top: 90%;
-  display: block;
+  top: 93%;
+  display: inline-block;
   z-index: 1;
 }
 
