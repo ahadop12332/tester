@@ -118,7 +118,7 @@ body {
 
 #messageBox {
   height: 50px;
-  width: 108.8vw;
+  width: 360px;
   left: 0px;
   background: #16161A;
   position: absolute;
@@ -216,7 +216,7 @@ body {
   margin-bottom: 5px;
   position: relative;
   top: 90px;
-  left: 135px;
+  left: 145px;
   text-indent: 7px;
   background-color: #16161A;
   color: white;
