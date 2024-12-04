@@ -77,7 +77,7 @@
   async function updatePage() {
     const session_stats = await check_session();
 
-    if (!session_stats === 'redirect') {
+    if (session_stats !== 'redirect') {
       window.location.href = "/index.html";
     }
   }
