@@ -1,0 +1,213 @@
+body {
+    background-color: white;
+    color: black;
+    font-family: 'Roboto', sans-serif;
+}
+.page-main {
+    max-width: 500px;
+    margin: auto;
+}
+.linkup-text {
+    color: #0284c7;
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.linkup-text:before {
+    content: '\f086';
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: #0284c7;
+}
+.m-hr {
+    position: relative;
+    bottom: 8px;
+    width: 99%;
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+.list-chats {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 10px 0;
+    transition: background-color 0.3s;
+    min-width: 344px;
+    min-height: 64px;
+}
+.list-chats:hover {
+    background-color: #f0f4f8;
+}
+.profile-img {
+    border-radius: 100%;
+    width: 60px;
+    border: 2px solid #0284c7;
+    padding: 2px;
+    object-fit: cover;
+    min-height: 60px;
+    min-width: 60px;
+}
+.chatname {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+    width: auto;
+}
+.message-in {
+    font-size: 12px;
+    color: gray;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+.dark-mode .list-chats:hover {
+  background-color: #1f1f1f;
+}
+/* I love you mano */
+
+.chat_with_someone {
+  
+}
+
+.profile-img-in {
+    border-radius: 100%;
+    width: 50px;
+    padding: 2px;
+    object-fit: cover;
+    position: relative;
+    top: 3px;
+}
+
+#cbicon {
+  display: inline-block;
+  font-size: 20px; 
+  position: relative; 
+  bottom: 22px; 
+  margin-left: 8px; 
+  margin-right: 8px;
+  bottom: 15px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#c3dot {
+  position: relative;
+  left: 180px;
+  display: inline-block;
+  bottom: 15px;
+}
+
+
+#chatName {
+  font-weight: bold;
+  width: auto;
+  font-size: 16px;
+  position: relative;
+  left: 8px;
+  bottom: 17px;
+  display: inline-block;
+}
+
+#messageBox {
+  height: 50px;
+  width: 100vw;
+  left: 0px;
+  background: #16161A;
+  position: absolute;
+  top: 86%;
+  display: block;
+  z-index: 1;
+}
+
+.profile-img-sender-wc {
+  width: 37px;
+  height: 37px;
+  top: 7px;
+  left: 9px;
+  border-radius: 100%;
+  position: absolute;
+}
+
+#writeText {
+  position: absolute;
+  outline: none;
+  border: none;
+  background: transparent;
+  width: auto;
+  color: white;
+  top: 15px;
+  left: 63px;
+  height: 30px;
+  overflow: hidden;
+  resize: none;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+#attachmentIcon {
+  color: #7E7E7B;
+  font-size: 17px;
+  top: 15px;
+  position: absolute;
+  left: 275px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#sendIcon {
+  color: #00BAFF;
+  font-size: 17px;
+  top: 14px;
+  left: 315px;
+  opacity: 0.9;
+  position: absolute;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#chatTop {
+  width: 95vw;
+  position: fixed;
+  margin-bottom: 10px;
+}
+
+
+/* Message box */
+
+#messages {
+  z-index: 2;
+}
+
+#messageFrom {
+  margin-bottom: 5px;
+  position: relative;
+  top: 80px;
+  left: 15px;
+  background-color: #16161A;
+  color: white;
+  border-radius: 10px;
+  display: block;
+  padding: 8px;
+  min-width: 150px;
+  max-width: 60%;
+  min-height: 15px;
+  word-wrap: break-word;
+}
+
+#msgTimeFrom {
+  text-align: right;
+  margin-top: 5px;
+  color: white;
+  position: relative;
+  bottom: 5px;
+  font-size: 10px;
+  }
