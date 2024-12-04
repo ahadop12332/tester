@@ -190,7 +190,7 @@ body {
 #messageFrom {
   margin-bottom: 5px;
   position: relative;
-  top: 80px;
+  top: 100px;
   left: 15px;
   background-color: #16161A;
   color: white;
@@ -205,9 +205,35 @@ body {
 
 #msgTimeFrom {
   text-align: right;
-  margin-top: 5px;
   color: white;
   position: relative;
-  bottom: 5px;
+  bottom: 6px;
   font-size: 10px;
-  }
+}
+
+
+#messageTo {
+  margin-bottom: 5px;
+  position: relative;
+  top: 100px;
+  left: 50vw;
+  text-indent: 7px;
+  background-color: #16161A;
+  color: white;
+  border-radius: 10px;
+  display: block;
+  padding: 8px;
+  min-width: 150px;
+  max-width: 60%;
+  min-height: 15px;
+  word-wrap: break-word;
+}
+
+#msgTimeTo {
+  text-align: right;
+  color: white;
+  position: relative;
+  bottom: 6px;
+  font-size: 10px;
+}
+
