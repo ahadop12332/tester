@@ -71,9 +71,11 @@ document.getElementById("loginForm").onsubmit = function (e) {
         } else if (data.error?.startsWith("IN")) {
           alert("Invalid user!");
         } else {
+          console.log(data.error)
           alert("Login failed: " + (String(data.error) || "Unknown error"));
         }
       })
+      console.log(data.error)
       .catch((error) => alert("Error: " + String(error)));
   }
 };
