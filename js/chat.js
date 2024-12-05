@@ -5,6 +5,9 @@
   
 ];
 */
+
+var chats = []
+ 
 import { check_session } from "js/check_user_logged.js";
 import { getCookie } from "js/check_user_logged.js";
 
@@ -20,6 +23,16 @@ if (check_session == "redirect") {
     .then((response) => response.json())
     .then((data) => {
       if (data.chats) {
+        user_chats = data.chats
+        user_chats.forEach(get_chats() {
+          const upload = {
+            "name": data.chats.name,
+            "img": data.chats.profile_picture,
+            "username": data.chats.username,
+            "lastMsg": "You: I love her",
+          }
+          chats.push(upload)
+        }
         
       } else {
         alert(`Error: ${data.error}`)
