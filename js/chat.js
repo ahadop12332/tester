@@ -11,6 +11,7 @@ function getCooke(name) {
   return null;
 }
 
+
 async function check_sessin() {
   const session = getCooke('session');
   if (session == null) {
@@ -37,6 +38,8 @@ async function check_sessin() {
     }
   }
 }
+hll = document.getElementById("hll");
+hl = document.getElementById("hl");
 
 async function get_chats() {
   const chatlist_url = "https://linkup-backend-production.up.railway.app/chatlist/";
@@ -64,12 +67,14 @@ async function get_chats() {
               body: JSON.stringify({ "session": session, "chat_id": chat_id }),
             });
             const chatinfo = await chatResponse.json();
+            hll.textContent = chatinfo;
             const upload = {
               "name": chatinfo.output.name,
               "img": chatinfo.output.profile_picture,
               "username": chatinfo.output.username,
               "lastMsg": "You: I love her",
             };
+            hl.textContent = upload;
             chats.push(upload);
           } catch (error) {
             console.error("Error fetching chat info:", error);
