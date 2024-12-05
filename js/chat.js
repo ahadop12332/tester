@@ -38,52 +38,53 @@ async function check_sessin() {
   }
 }
 
-const chatlist_url = "https://linkup-backend-production.up.railway.app/chatlist/";
-const userinfo_url = "https://linkup-backend-production.up.railway.app/userinfo/";
-const session = getCooke('session');
-const check_session_status = check_sessin();
-const chatlistFetch = {
-  "session": session
-};
+async function get_chats() {
+  const chatlist_url = "https://linkup-backend-production.up.railway.app/chatlist/";
+  const userinfo_url = "https://linkup-backend-production.up.railway.app/userinfo/";
+  const session = getCooke('session');
+  const check_session_status = await check_sessin();
+  const chatlistFetch = { "session": session };
 
-if (check_session_status == "redirect") {
-  fetch(chatlist_url, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(chatlistFetch),
-  })
-    .then((response) => response.json())
-    .then((data) => {
+  if (check_session_status == "redirect") {
+    try {
+      const response = await fetch(chatlist_url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(chatlistFetch),
+      });
+
+      const data = await response.json();
       if (data.chats) {
         const chat_ids = data.chats; 
-        chat_ids.forEach(chat_id => {
-          fetch(userinfo_url, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ "session": session, "chat_id": chat_id }),
-          })
-            .then((response) => response.json())
-            .then((chatinfo) => {
-              const upload = {
-                "name": chatinfo.output.name,
-                "img": chatinfo.output.profile_picture,
-                "username": chatinfo.output.username,
-                "lastMsg": "You: I love her",
-              };
-              chats.push(upload);
-            })
-            .catch(error => {
-              console.error("Error fetching chat info:", error);
+        for (let chat_id of chat_ids) {
+          try {
+            const chatResponse = await fetch(userinfo_url, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ "session": session, "chat_id": chat_id }),
             });
-        });
+            const chatinfo = await chatResponse.json();
+            const upload = {
+              "name": chatinfo.output.name,
+              "img": chatinfo.output.profile_picture,
+              "username": chatinfo.output.username,
+              "lastMsg": "You: I love her",
+            };
+            chats.push(upload);
+          } catch (error) {
+            console.error("Error fetching chat info:", error);
+          }
+        }
       } else {
         alert(`Error: ${data.error}`);
       }
-    })
-    .catch(error => {
+    } catch (error) {
       console.error("Error fetching chat list:", error);
-    });
+    }
+  }
 }
+
+get_chats()
 
 const chatContainer = document.querySelector('.page-main');
 chats.forEach(chat => {
