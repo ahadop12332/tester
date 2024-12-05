@@ -127,15 +127,15 @@ body {
   z-index: 1;
 }
 
-@media (max-height: 585px) {
+@media (max-height: 550px) {
   #messageBox {
     top: 74vh;
   }
 }
 
-@media (min-height: 585px) {
+@media (min-height: 551px) {
   #messageBix {
-    top: 500px;
+    top: 400px;
   }   
 }
 
