@@ -127,6 +127,12 @@ body {
   z-index: 1;
 }
 
+@media (max-height) {
+  #messageBox {
+    top: 35vh;
+  }
+}
+
 .profile-img-sender-wc {
   width: 37px;
   height: 37px;
