@@ -1,5 +1,3 @@
-var chats = [];
-
 function getCooke(name) {
   const cookies = document.cookie.split('; ');
   for (let cookie of cookies) {
@@ -46,9 +44,9 @@ async function get_chats() {
   const userinfo_url = "https://linkup-backend-production.up.railway.app/userinfo/";
   const session = getCooke('session');
   const check_session_status = await check_sessin();
-  const chatlistFetch = { "session": session };
+  const chatlistFetch = { session };
 
-  if (check_session_status == "redirect") {
+  if (check_session_status === "redirect") {
     try {
       const response = await fetch(chatlist_url, {
         method: "POST",
@@ -57,46 +55,57 @@ async function get_chats() {
       });
 
       const data = await response.json();
-      console.log(data.chats)
       if (data.chats) {
         const chat_ids = data.chats; 
+        const chatContainer = document.querySelector('.page-main');
+        chatContainer.innerHTML = ''; // Clear existing chats
+        
         for (let chat_id of chat_ids) {
           try {
             const chatResponse = await fetch(userinfo_url, {
               method: "POST",
               headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ "session": session, "chat_id": chat_id }),
+              body: JSON.stringify({ session, chat_id }),
             });
             const chatinfo = await chatResponse.json();
-            hll.textContent = chatinfo.output;
-            const upload = {
-              "name": chatinfo.output.name,
-              "img": chatinfo.output.profile_picture,
-              "username": chatinfo.output.username,
-              "lastMsg": "You: I love her",
-            };
-            hl.textContent = chatinfo.error;
-            if (chatinfo.error){
-              alert(`Error 80: ${chatinfo.error}`)
+
+            if (chatinfo.output) {
+              const upload = {
+                name: chatinfo.output.name,
+                img: chatinfo.output.profile_picture,
+                username: chatinfo.output.username,
+                lastMsg: "You: I love her",
+              };
+
+              const chatItem = `
+                <div class='list-chats' onclick='go_chat()'>
+                  <img src="${upload.img}" class='profile-img'>
+                  <div>
+                    <p class="chatname">${upload.name}</p>
+                    <p class="message-in">${upload.lastMsg}</p>
+                  </div>
+                </div>
+              `;
+              chatContainer.innerHTML += chatItem;
+            } else if (chatinfo.error) {
+              console.error(`Chat info error: ${chatinfo.error}`);
             }
-            chats.push(upload);
           } catch (error) {
-            alert(`Error on 84: ${error}`)
             console.error("Error fetching chat info:", error);
           }
         }
-      } else {
-        alert(`Error: ${data.error}`);
+      } else if (data.error) {
+        console.error(`Error: ${data.error}`);
       }
     } catch (error) {
-      alert("Error fetching chat info:", error)
       console.error("Error fetching chat list:", error);
     }
+  } else {
+    console.error("Session check failed. Redirecting to login...");
   }
 }
 
-
-
+/*
 function show_chats() {
   get_chats()
   const chatContainer = document.querySelector('.page-main');
@@ -113,6 +122,7 @@ function show_chats() {
     chatContainer.innerHTML += chatItem;
   });
 }
+*/
 
 function toggleDarkMode() {
   document.body.classList.toggle('dark-mode');
