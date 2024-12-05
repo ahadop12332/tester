@@ -11,27 +11,41 @@ var chats = []
 import { check_session } from "js/check_user_logged.js";
 import { getCookie } from "js/check_user_logged.js";
 
-chatlist_url = "https://linkup-backend-production.up.railway.app/chatlist";
+chatlist_url = "https://linkup-backend-production.up.railway.app/chatlist/";
+userinfo_url = "https://linkup-backend-production.up.railway.app/userinfo/";
 session = getCookie('session');
 check_session = check_session();
+var chatlistFetch = {
+  "session": session
+}
+
 if (check_session == "redirect") {
   fetch(chatlist_url, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
+    body: JSON.stringify(chatlistFetch),
   })
     .then((response) => response.json())
     .then((data) => {
       if (data.chats) {
         user_chats = data.chats
-        user_chats.forEach(get_chats() {
-          const upload = {
-            "name": data.chats.name,
-            "img": data.chats.profile_picture,
-            "username": data.chats.username,
-            "lastMsg": "You: I love her",
-          }
-          chats.push(upload)
+        chat_id = data.chats // can you make this to get id backend just give list of ids
+        user_chats.forEach(get_chats(chat_id) {
+          fetch(userinfo_url, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({"session": session, "chat_id": chat_id}),
+          })
+            .then((response) => response.json())
+            .then((chatinfo) => {
+              const upload = {
+                "name": chatinfo.output.name,
+                "img": chatinfo.output.profile_picture,
+                "username": chatinfo.output.username,
+                "lastMsg": "You: I love her",
+              }
+              chats.push(upload)
+            }
         }
         
       } else {
