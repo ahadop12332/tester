@@ -58,7 +58,6 @@ async function get_chats() {
       if (data.chats) {
         const chat_ids = data.chats; 
         const chatContainer = document.querySelector('.page-main');
-        chatContainer.innerHTML = ''; // Clear existing chats
         
         for (let chat_id of chat_ids) {
           try {
