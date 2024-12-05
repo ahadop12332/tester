@@ -57,6 +57,7 @@ async function get_chats() {
       });
 
       const data = await response.json();
+      console.log(data.chats)
       if (data.chats) {
         const chat_ids = data.chats; 
         for (let chat_id of chat_ids) {
@@ -67,14 +68,14 @@ async function get_chats() {
               body: JSON.stringify({ "session": session, "chat_id": chat_id }),
             });
             const chatinfo = await chatResponse.json();
-            hll.textContent = chatinfo;
+            hll.textContent = chatinfo.output;
             const upload = {
               "name": chatinfo.output.name,
               "img": chatinfo.output.profile_picture,
               "username": chatinfo.output.username,
               "lastMsg": "You: I love her",
             };
-            hl.textContent = upload;
+            hl.textContent = chatinfo.error;
             chats.push(upload);
           } catch (error) {
             console.error("Error fetching chat info:", error);
