@@ -133,6 +133,12 @@ body {
   }
 }
 
+@media (min-height: 616px) {
+  #messageBix {
+    top: 600px;
+  }   
+}
+
 .profile-img-sender-wc {
   width: 37px;
   height: 37px;
