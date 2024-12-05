@@ -95,21 +95,24 @@ async function get_chats() {
   }
 }
 
-get_chats()
 
-const chatContainer = document.querySelector('.page-main');
-chats.forEach(chat => {
-  const chatItem = `
-    <div class='list-chats' onclick='go_chat()'>
-      <img src="${chat.img}" class='profile-img'>
-      <div>
-        <p class="chatname">${chat.name}</p>
-        <p class="message-in">${chat.lastMsg}</p>
+
+function show_chats() {
+  get_chats()
+  const chatContainer = document.querySelector('.page-main');
+  chats.forEach(chat => {
+    const chatItem = `
+      <div class='list-chats' onclick='go_chat()'>
+        <img src="${chat.img}" class='profile-img'>
+        <div>
+          <p class="chatname">${chat.name}</p>
+          <p class="message-in">${chat.lastMsg}</p>
+        </div>
       </div>
-    </div>
-  `;
-  chatContainer.innerHTML += chatItem;
-});
+    `;
+    chatContainer.innerHTML += chatItem;
+  });
+}
 
 function toggleDarkMode() {
   document.body.classList.toggle('dark-mode');
