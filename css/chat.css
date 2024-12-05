@@ -133,7 +133,7 @@ body {
   }
 }
 
-@media (min-height: 601px) {
+@media (min-height: 595px) {
   #messageBix {
     top: 590px;
   }   
