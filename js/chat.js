@@ -1,25 +1,17 @@
-/* const chats = [
-  { name: "Mano", img: "https://i.imgur.com/mwkxppE.jpeg", lastMsg: "You: Hii" },
-  { name: "Random stanger", img: "https://i.imgur.com/mwkxppE.jpeg", lastMsg: "You: Hello!" },
-  { name: "Kora", img: "https://i.imgur.com/mwkxppE.jpeg", lastMsg: "You: Hello!" }
-  
-];
-*/
+var chats = [];
 
-var chats = []
- 
 import { check_session } from "js/check_user_logged.js";
 import { getCookie } from "js/check_user_logged.js";
 
-chatlist_url = "https://linkup-backend-production.up.railway.app/chatlist/";
-userinfo_url = "https://linkup-backend-production.up.railway.app/userinfo/";
-session = getCookie('session');
-check_session = check_session();
-var chatlistFetch = {
+const chatlist_url = "https://linkup-backend-production.up.railway.app/chatlist/";
+const userinfo_url = "https://linkup-backend-production.up.railway.app/userinfo/";
+const session = getCookie('session');
+const check_session_status = check_session();
+const chatlistFetch = {
   "session": session
-}
+};
 
-if (check_session == "redirect") {
+if (check_session_status == "redirect") {
   fetch(chatlist_url, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -28,13 +20,12 @@ if (check_session == "redirect") {
     .then((response) => response.json())
     .then((data) => {
       if (data.chats) {
-        user_chats = data.chats
-        chat_id = data.chats // can you make this to get id backend just give list of ids
-        user_chats.forEach(get_chats(chat_id) {
+        const chat_ids = data.chats; 
+        chat_ids.forEach(chat_id => {
           fetch(userinfo_url, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({"session": session, "chat_id": chat_id}),
+            body: JSON.stringify({ "session": session, "chat_id": chat_id }),
           })
             .then((response) => response.json())
             .then((chatinfo) => {
@@ -43,18 +34,21 @@ if (check_session == "redirect") {
                 "img": chatinfo.output.profile_picture,
                 "username": chatinfo.output.username,
                 "lastMsg": "You: I love her",
-              }
-              chats.push(upload)
-            }
-        }
-        
+              };
+              chats.push(upload);
+            })
+            .catch(error => {
+              console.error("Error fetching chat info:", error);
+            });
+        });
       } else {
-        alert(`Error: ${data.error}`)
+        alert(`Error: ${data.error}`);
       }
-    }
-  
+    })
+    .catch(error => {
+      console.error("Error fetching chat list:", error);
+    });
 }
-
 
 const chatContainer = document.querySelector('.page-main');
 chats.forEach(chat => {
@@ -73,21 +67,20 @@ chats.forEach(chat => {
 function toggleDarkMode() {
   document.body.classList.toggle('dark-mode');
 }
-  
-// Get elements
-chat_pm_div = document.getElementById('chat_with_someone')
-pagemain = document.getElementById("page-main")
-others = document.getElementById('others')
-chatName = document.getElementById("chatName")
-async function go_chat(pm=true) {
-  if (pm == true) {
+
+const chat_pm_div = document.getElementById('chat_with_someone');
+const pagemain = document.getElementById("page-main");
+const others = document.getElementById('others');
+const chatName = document.getElementById("chatName");
+
+async function go_chat(pm = true) {
+  if (pm) {
     pagemain.style.display = 'none';
     chat_pm_div.style.display = 'inline-block';
     others.style.display = 'none';
-    
-    chatName.textContent = "Mano"
+    chatName.textContent = "Mano";
   } else {
-    console.log(chat_pm_div.getAttribute('uid'))
+    console.log(chat_pm_div.getAttribute('uid'));
   }
 }
 
