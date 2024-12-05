@@ -45,3 +45,7 @@ async function close_chat() {
   chat_pm_div.style.display = 'none';
   others.style.display = '';
 }
+
+document.querySelector("#messageBox textarea").addEventListener("focus", function (e) {
+  e.preventDefault();
+});
