@@ -123,9 +123,7 @@ function show_chats() {
 }
 */
 
-function toggleDarkMode() {
-  document.body.classList.toggle('dark-mode');
-}
+
 
 const chat_pm_div = document.getElementById('chat_with_someone');
 const pagemain = document.getElementById("page-main");
