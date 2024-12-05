@@ -127,9 +127,9 @@ body {
   z-index: 1;
 }
 
-@media (max-height) {
+@media (max-height: 600px) {
   #messageBox {
-    top: 35vh;
+    top: 74vh;
   }
 }
 
