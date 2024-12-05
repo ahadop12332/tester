@@ -81,7 +81,7 @@ async function get_chats() {
             }
             chats.push(upload);
           } catch (error) {
-            alert(`Error on 84: ${error}`
+            alert(`Error on 84: ${error}`)
             console.error("Error fetching chat info:", error);
           }
         }
