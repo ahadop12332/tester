@@ -1,7 +1,6 @@
 var chats = [];
 
-import { check_session } from "js/check_user_logged.js";
-import { getCookie } from "js/check_user_logged.js";
+import { check_session, getCookie } from "./check_user_logged.js";
 
 const chatlist_url = "https://linkup-backend-production.up.railway.app/chatlist/";
 const userinfo_url = "https://linkup-backend-production.up.railway.app/userinfo/";
