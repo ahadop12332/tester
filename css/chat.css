@@ -90,7 +90,6 @@ body {
   display: inline-block;
   font-size: 20px; 
   position: relative; 
-  bottom: 22px; 
   margin-left: 8px; 
   margin-right: 8px;
   bottom: 15px;
@@ -176,7 +175,7 @@ body {
   left: 275px;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
-}
+}  
 
 #sendIcon {
   color: #00BAFF;
@@ -185,7 +184,6 @@ body {
   left: 315px;
   opacity: 0.9;
   position: absolute;
-  display: inline-block;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 }
