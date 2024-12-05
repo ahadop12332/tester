@@ -133,9 +133,9 @@ body {
   }
 }
 
-@media (min-height: 616px) {
+@media (min-height: 601px) {
   #messageBix {
-    top: 600px;
+    top: 590px;
   }   
 }
 
