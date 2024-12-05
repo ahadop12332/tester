@@ -73,7 +73,7 @@ async function get_chats() {
                 name: chatinfo.output.name,
                 img: chatinfo.output.profile_picture,
                 username: chatinfo.output.username,
-                lastMsg: "You: I love her",
+                lastMsg: "You: Thanks for all who made me learn these stuffs.",
               };
 
               const chatItem = `
