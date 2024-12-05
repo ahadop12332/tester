@@ -1,9 +1,33 @@
-const chats = [
+/* const chats = [
   { name: "Mano", img: "https://i.imgur.com/mwkxppE.jpeg", lastMsg: "You: Hii" },
   { name: "Random stanger", img: "https://i.imgur.com/mwkxppE.jpeg", lastMsg: "You: Hello!" },
   { name: "Kora", img: "https://i.imgur.com/mwkxppE.jpeg", lastMsg: "You: Hello!" }
   
 ];
+*/
+import { check_session } from "js/check_user_logged.js";
+import { getCookie } from "js/check_user_logged.js";
+
+chatlist_url = "https://linkup-backend-production.up.railway.app/chatlist";
+session = getCookie('session');
+check_session = check_session();
+if (check_session == "redirect") {
+  fetch(chatlist_url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.chats) {
+        
+      } else {
+        alert(`Error: ${data.error}`)
+      }
+    }
+  
+}
+
 
 const chatContainer = document.querySelector('.page-main');
 chats.forEach(chat => {
