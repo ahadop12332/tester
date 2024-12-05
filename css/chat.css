@@ -63,6 +63,7 @@ body {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    word-wrap: break-word;
 }
 .dark-mode {
   background-color: #121212;
