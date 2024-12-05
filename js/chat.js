@@ -76,8 +76,12 @@ async function get_chats() {
               "lastMsg": "You: I love her",
             };
             hl.textContent = chatinfo.error;
+            if (chatinfo.error){
+              alert(`Error 80: ${chatinfo.error}`)
+            }
             chats.push(upload);
           } catch (error) {
+            alert(`Error on 84: ${error}`
             console.error("Error fetching chat info:", error);
           }
         }
@@ -85,6 +89,7 @@ async function get_chats() {
         alert(`Error: ${data.error}`);
       }
     } catch (error) {
+      alert("Error fetching chat info:", error)
       console.error("Error fetching chat list:", error);
     }
   }
