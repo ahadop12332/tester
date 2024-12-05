@@ -1,4 +1,4 @@
-export function getCookie(name) {
+function getCookie(name) {
   const cookies = document.cookie.split('; ');
   for (let cookie of cookies) {
     const [key, value] = cookie.split('=');
@@ -9,7 +9,7 @@ export function getCookie(name) {
   return null;
 }
 
-export async function check_session() {
+async function check_session() {
   const session = getCookie('session');
   if (session == null) {
     return "Unmatched";
