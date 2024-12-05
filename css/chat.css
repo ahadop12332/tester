@@ -118,11 +118,11 @@ body {
 
 #messageBox {
   height: 50px;
-  width: 360px;
-  left: 0px;
+  width: 400px;
+  left: -8px;
   background: #16161A;
-  position: absolute;
-  top: 93%;
+  position: fixed;
+  top: 85vh;
   display: inline-block;
   z-index: 1;
 }
