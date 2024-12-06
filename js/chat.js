@@ -66,7 +66,10 @@ async function get_chats() {
     if (data.chats) {
       const chatContainer = document.querySelector('.page-main');
       chatState = {}; 
-
+      const lchats = document.querySelectorAll('.list-chats');
+      if (lchats.length > 0) {
+        chats.forEach(lchat => lchat.remove());
+      }
       for (let chat_id of data.chats) {
         try {
           const chatResponse = await fetch(userinfo_url, {
