@@ -58,7 +58,7 @@ async function get_chats() {
   ws = new WebSocket(chatlist_url);
 
   ws.onopen = () => {
-    ws.send(JSON.stringify(session));
+    ws.send(JSON.stringify({ session }));
   };
 
   ws.onmessage = async (event) => {
