@@ -39,8 +39,8 @@ async function check_sessin() {
 hll = document.getElementById("hll");
 hl = document.getElementById("hl");
 
-
 let ws;
+let chatState = {};
 
 async function get_chats() {
   const chatlist_url = "wss://linkup-backend-production.up.railway.app/ws/chatlist/";
@@ -48,72 +48,75 @@ async function get_chats() {
   const session = getCooke('session');
   const check_session_status = await check_sessin();
 
-  if (check_session_status === "redirect") {
-    if (ws && ws.readyState === WebSocket.OPEN) return;
-
-    ws = new WebSocket(chatlist_url);
-
-    ws.onopen = () => {
-      ws.send(JSON.stringify(session));
-    };
-
-    ws.onmessage = async (event) => {
-      const data = JSON.parse(event.data);
-      if (data.chats) {
-        const chat_ids = data.chats;
-        const chatContainer = document.querySelector('.page-main');
-
-        for (let chat_id of chat_ids) {
-          try {
-            const chatResponse = await fetch(userinfo_url, {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ session, chat_id }),
-            });
-
-            const chatinfo = await chatResponse.json();
-            if (chatinfo.output) {
-              const upload = {
-                name: chatinfo.output.name,
-                img: chatinfo.output.profile_picture,
-                username: chatinfo.output.username,
-                lastMsg: "You: Thanks for all who made me learn these stuffs.",
-              };
-
-              const chatItem = `
-                <div class='list-chats' onclick='go_chat()'>
-                  <img src="${upload.img}" class='profile-img'>
-                  <div>
-                    <p class="chatname">${upload.name}</p>
-                    <p class="message-in">${upload.lastMsg}</p>
-                  </div>
-                </div>
-              `;
-              chatContainer.innerHTML += chatItem;
-            } else if (chatinfo.error) {
-              console.error(`Chat info error: ${chatinfo.error}`);
-            }
-          } catch (error) {
-            console.error("Error fetching chat info:", error);
-          }
-        }
-      } else if (data.error) {
-        console.error(`Error: ${data.error}`);
-      }
-    };
-
-    ws.onclose = () => {
-      console.log("WebSocket closed. Reconnecting...");
-      setTimeout(get_chats, 1000);
-    };
-
-    ws.onerror = (error) => {
-      console.error("WebSocket error:", error);
-      ws.close();
-    };
-  } else {
+  if (check_session_status !== "redirect") {
     console.error("Session check failed. Redirecting to login...");
+    return;
   }
+
+  if (ws && ws.readyState === WebSocket.OPEN) return;
+
+  ws = new WebSocket(chatlist_url);
+
+  ws.onopen = () => {
+    ws.send(JSON.stringify(session));
+  };
+
+  ws.onmessage = async (event) => {
+    const data = JSON.parse(event.data);
+    if (data.chats) {
+      const chatContainer = document.querySelector('.page-main');
+      for (let chat_id of data.chats) {
+        if (chatState[chat_id]) continue;
+
+        try {
+          const chatResponse = await fetch(userinfo_url, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ session, chat_id }),
+          });
+
+          const chatinfo = await chatResponse.json();
+          if (chatinfo.output) {
+            chatState[chat_id] = chatinfo.output;
+
+            const upload = {
+              name: chatinfo.output.name,
+              img: chatinfo.output.profile_picture,
+              username: chatinfo.output.username,
+              lastMsg: "You: Thanks for all who made me learn these stuffs.",
+            };
+
+            const chatItem = `
+              <div class='list-chats' onclick='go_chat()'>
+                <img src="${upload.img}" class='profile-img'>
+                <div>
+                  <p class="chatname">${upload.name}</p>
+                  <p class="message-in">${upload.lastMsg}</p>
+                </div>
+              </div>
+            `;
+            chatContainer.innerHTML += chatItem;
+          } else if (chatinfo.error) {
+            console.error(`Chat info error: ${chatinfo.error}`);
+          }
+        } catch (error) {
+          console.error("Error fetching chat info:", error);
+        }
+      }
+    } else if (data.error) {
+      console.error(`Error: ${data.error}`);
+    }
+  };
+
+  ws.onclose = () => {
+    console.log("WebSocket closed. Reconnecting...");
+    setTimeout(get_chats, 1000);
+  };
+
+  ws.onerror = (error) => {
+    console.error("WebSocket error:", error);
+    ws.close();
+  };
 }
 
 
