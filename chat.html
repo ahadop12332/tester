@@ -67,6 +67,9 @@
 <script src="js/chat.js"></script>
 <script>
   get_chats()
+  document.addEventListener("DOMContentLoaded", () => {
+    initializeWebSocket();
+  });
   async function updatePage() {
     const session_stats = await check_session();
 
