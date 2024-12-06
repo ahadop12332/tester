@@ -68,7 +68,7 @@ async function get_chats() {
       chatState = {}; 
       const lchats = document.querySelectorAll('.list-chats');
       if (lchats.length > 0) {
-        chats.forEach(lchat => lchat.remove());
+        lchats.forEach(lchat => lchat.remove());
       }
       for (let chat_id of data.chats) {
         try {
