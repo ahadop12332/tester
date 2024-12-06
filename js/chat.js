@@ -40,7 +40,7 @@ hll = document.getElementById("hll");
 hl = document.getElementById("hl");
 
 async function get_chats() {
-  const chatlist_url = "https://linkup-backend-production.up.railway.app/chatlist/";
+  const chatlist_url = "wss://linkup-backend-production.up.railway.app/ws/chatlist/";
   const userinfo_url = "https://linkup-backend-production.up.railway.app/userinfo/";
   const session = getCooke('session');
   const check_session_status = await check_sessin();
@@ -48,81 +48,66 @@ async function get_chats() {
 
   if (check_session_status === "redirect") {
     try {
-      const response = await fetch(chatlist_url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(chatlistFetch),
-      });
+      const ws = new WebSocket(chatlist_url);
 
-      const data = await response.json();
-      if (data.chats) {
-        const chat_ids = data.chats; 
-        const chatContainer = document.querySelector('.page-main');
-        
-        for (let chat_id of chat_ids) {
-          try {
-            const chatResponse = await fetch(userinfo_url, {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ session, chat_id }),
-            });
-            const chatinfo = await chatResponse.json();
+      ws.onopen = () => {
+        ws.send(JSON.stringify(session));
+      };
 
-            if (chatinfo.output) {
-              const upload = {
-                name: chatinfo.output.name,
-                img: chatinfo.output.profile_picture,
-                username: chatinfo.output.username,
-                lastMsg: "You: Thanks for all who made me learn these stuffs.",
-              };
+      ws.onmessage = async (event) => {
+        const data = JSON.parse(event.data);
+        if (data.chats) {
+          const chat_ids = data.chats;
+          const chatContainer = document.querySelector('.page-main');
 
-              const chatItem = `
-                <div class='list-chats' onclick='go_chat()'>
-                  <img src="${upload.img}" class='profile-img'>
-                  <div>
-                    <p class="chatname">${upload.name}</p>
-                    <p class="message-in">${upload.lastMsg}</p>
+          for (let chat_id of chat_ids) {
+            try {
+              const chatResponse = await fetch(userinfo_url, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ session, chat_id }),
+              });
+
+              const chatinfo = await chatResponse.json();
+              if (chatinfo.output) {
+                const upload = {
+                  name: chatinfo.output.name,
+                  img: chatinfo.output.profile_picture,
+                  username: chatinfo.output.username,
+                  lastMsg: "You: Thanks for all who made me learn these stuffs.",
+                };
+
+                const chatItem = `
+                  <div class='list-chats' onclick='go_chat()'>
+                    <img src="${upload.img}" class='profile-img'>
+                    <div>
+                      <p class="chatname">${upload.name}</p>
+                      <p class="message-in">${upload.lastMsg}</p>
+                    </div>
                   </div>
-                </div>
-              `;
-              chatContainer.innerHTML += chatItem;
-            } else if (chatinfo.error) {
-              console.error(`Chat info error: ${chatinfo.error}`);
+                `;
+                chatContainer.innerHTML += chatItem;
+              } else if (chatinfo.error) {
+                console.error(`Chat info error: ${chatinfo.error}`);
+              }
+            } catch (error) {
+              console.error("Error fetching chat info:", error);
             }
-          } catch (error) {
-            console.error("Error fetching chat info:", error);
           }
+        } else if (data.error) {
+          console.error(`Error: ${data.error}`);
         }
-      } else if (data.error) {
-        console.error(`Error: ${data.error}`);
-      }
+      };
+
+      ws.onerror = (error) => console.error("WebSocket error:", error);
+      ws.onclose = (event) => console.log("WebSocket closed:", event), alert("Websocket closed");
     } catch (error) {
-      console.error("Error fetching chat list:", error);
+      console.error("Error connecting WebSocket:", error);
     }
   } else {
     console.error("Session check failed. Redirecting to login...");
   }
 }
-
-/*
-function show_chats() {
-  get_chats()
-  const chatContainer = document.querySelector('.page-main');
-  chats.forEach(chat => {
-    const chatItem = `
-      <div class='list-chats' onclick='go_chat()'>
-        <img src="${chat.img}" class='profile-img'>
-        <div>
-          <p class="chatname">${chat.name}</p>
-          <p class="message-in">${chat.lastMsg}</p>
-        </div>
-      </div>
-    `;
-    chatContainer.innerHTML += chatItem;
-  });
-}
-*/
-
 
 
 const chat_pm_div = document.getElementById('chat_with_someone');
