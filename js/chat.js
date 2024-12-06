@@ -65,9 +65,9 @@ async function get_chats() {
     const data = JSON.parse(event.data);
     if (data.chats) {
       const chatContainer = document.querySelector('.page-main');
-      for (let chat_id of data.chats) {
-        if (chatState[chat_id]) continue;
+      chatState = {}; 
 
+      for (let chat_id of data.chats) {
         try {
           const chatResponse = await fetch(userinfo_url, {
             method: "POST",
@@ -118,7 +118,6 @@ async function get_chats() {
     ws.close();
   };
 }
-
 
 const chat_pm_div = document.getElementById('chat_with_someone');
 const pagemain = document.getElementById("page-main");
