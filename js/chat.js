@@ -113,12 +113,13 @@ async function get_chats() {
 
   ws.onclose = () => {
     console.log("WebSocket closed. Reconnecting...");
-    setTimeout(get_chats, 1000);
+    setTimeout(get_chats, 600);
   };
 
   ws.onerror = (error) => {
     console.error("WebSocket error:", error);
-    ws.close();
+    alert("WebSocket error:", error);
+    setTimeout(get_chats, 500);
   };
 }
 
