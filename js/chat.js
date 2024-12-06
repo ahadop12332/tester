@@ -123,6 +123,13 @@ async function get_chats() {
   };
 }
 
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible") {
+    console.log("Trying to refresh ws connection....");
+    initializeWebSocket();
+  }
+});
+
 const chat_pm_div = document.getElementById('chat_with_someone');
 const pagemain = document.getElementById("page-main");
 const others = document.getElementById('others');
