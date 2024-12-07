@@ -1,3 +1,5 @@
+import { check_session } from './js/check_user_logged.js'
+
 let ws;
 let chatState = {};
 
