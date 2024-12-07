@@ -1,6 +1,6 @@
 let ws;
 let chatState = {};
-const loader = document.querySelector('.loader');
+var loader = document.querySelector('.loader');
 
 async function get_chats() {
   const chatlist_url = "wss://linkup-backend-production.up.railway.app/ws/chatlist/";
