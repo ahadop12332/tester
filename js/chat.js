@@ -85,7 +85,7 @@ async function get_chats() {
 document.addEventListener("visibilitychange", () => {
   if (document.visibilityState === "visible") {
     console.log("Trying to refresh ws connection....");
-    initializeWebSocket();
+    get_chats()
   }
 });
 
