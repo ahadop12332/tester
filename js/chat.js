@@ -100,7 +100,7 @@ async function go_chat(chat_id) {
     chat_pm_div.style.display = 'inline-block';
     others.style.display = 'none';
     chatName.textContent = "Mano";
-    console.log(`Loaded chat ${chat_id}`)
+    alert(`Loaded chat ${chat_id}`);
   } else {
     console.log(chat_pm_div.getAttribute('uid'));
   }
