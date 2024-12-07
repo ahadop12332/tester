@@ -118,4 +118,3 @@ document.querySelector("#messageBox textarea").addEventListener("focus", functio
   e.preventDefault();
 });
 
-window.get_chats = get_chats;
