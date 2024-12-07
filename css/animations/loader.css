@@ -1,9 +1,10 @@
 .loader {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 5px solid black;
-  border-top: 5px solid transperant;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 5px solid transperant;
+  border-top: 5px solid blue;
   border-radius: 50%;
   width: 23px; 
   height: 23px;
