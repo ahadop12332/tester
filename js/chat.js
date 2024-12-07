@@ -89,28 +89,40 @@ document.addEventListener("visibilitychange", () => {
   }
 });
 
-const chat_pm_div = document.getElementById('chat_with_someone');
+
+const chat = document.getElementById('chat_with_someone');
+const messages = document.getElementById('messages');
 const pagemain = document.getElementById("page-main");
 const others = document.getElementById('others');
 const chatName = document.getElementById("chatName");
 
+async function close_chat() {
+  pagemain.style.display = 'block';
+  chat.style.display = 'none';
+  others.style.display = 'block';
+}
+
 async function go_chat(chat_id) {
   if (chat_id) {
-    pagemain.style.display = 'none';
-    chat_pm_div.style.display = 'inline-block';
-    others.style.display = 'none';
-    chatName.textContent = "Human";
-    alert(`Loaded chat ${chat_id}`);
+    if (chatState[chat_id]) {
+      try {
+        pagemain.style.display = 'none';
+        chat.style.display = 'inline-block';
+        others.style.display = 'none';
+        chatName.textContent = chatState[chat_id]['name']
+        alert(`Loaded chat ${chat_id}`);
+      } catch (error) {
+        console.error(`Error while loading chat ${chat_id}: ${error}`);
+      }
+    } else {
+      console.warn(`You are trying to open a invalid id: ${chat_id}`);
+      await close_chat()
+    }
   } else {
-    console.log(chat_pm_div.getAttribute('uid'));
+    console.log(chat.getAttribute('uid'));
   }
 }
 
-async function close_chat() {
-  pagemain.style.display = 'block';
-  chat_pm_div.style.display = 'none';
-  others.style.display = '';
-}
 
 document.querySelector("#messageBox textarea").addEventListener("focus", function (e) {
   e.preventDefault();
