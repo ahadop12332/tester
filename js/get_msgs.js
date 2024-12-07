@@ -36,7 +36,7 @@ async function get_msgs() {
   };
 
   ws.onmessage = (event) => {
-    alert(`New message: ${event.data}`);
+    console.log(`New message: ${event.data}`);
   };
 
   ws.onclose = () => {
