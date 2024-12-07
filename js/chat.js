@@ -49,7 +49,7 @@ async function get_chats() {
             };
 
             const chatItem = `
-              <div class='list-chats' onclick='go_chat()'>
+              <div class='list-chats' onclick='go_chat(${chat_id})'>
                 <img src="${upload.img}" class='profile-img'>
                 <div>
                   <p class="chatname">${upload.name}</p>
@@ -94,12 +94,13 @@ const pagemain = document.getElementById("page-main");
 const others = document.getElementById('others');
 const chatName = document.getElementById("chatName");
 
-async function go_chat(pm = true) {
-  if (pm) {
+async function go_chat(chat_id) {
+  if (chat_id) {
     pagemain.style.display = 'none';
     chat_pm_div.style.display = 'inline-block';
     others.style.display = 'none';
     chatName.textContent = "Mano";
+    console.log(`Loaded chat ${chat_id}`)
   } else {
     console.log(chat_pm_div.getAttribute('uid'));
   }
