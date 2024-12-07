@@ -1,4 +1,4 @@
-export async function check_session() {
+async function check_session() {
   const session = getCookie('session');
   if (session == null) {
     return "Unmatched";
@@ -24,5 +24,3 @@ export async function check_session() {
     }
   }
 }
-
-window.check_session = check_session;
