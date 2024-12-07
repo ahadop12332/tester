@@ -101,6 +101,7 @@ async function close_chat() {
   pagemain.style.display = 'block';
   chat.style.display = 'none';
   others.style.display = 'block';
+  document.title = "LinkUp";
 }
 
 async function go_chat(chat_id) {
