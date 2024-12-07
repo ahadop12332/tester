@@ -49,7 +49,7 @@ async function get_chats() {
               lastMsg: "You: Thanks for all who made me learn these stuffs.",
             };
 
-            const chatItems += `
+            chatItems += `
               <div class='list-chats' onclick='go_chat(${chat_id})'>
                 <img src="${upload.img}" class='profile-img'>
                 <div>
