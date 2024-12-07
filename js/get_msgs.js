@@ -14,18 +14,18 @@ async function get_msgs() {
 
       const result = await response.json();
       if (result.success && typeof result.success === "string" && result.success === "Same") {
-        console.log("Session valid. Proceeding...");
+        console.log('Start receiving messages!')
       } else {
         console.warn("Session unmatched. Redirecting...");
-        return "Unmatched";
+        return;
       }
     } catch (err) {
       console.error("Error during session check:", err.message);
-      return "Unmatched";
+      return;
     }
   } else {
     console.warn("No session cookie found.");
-    return "Unmatched";
+    return;
   }
 
   const ws = new WebSocket(ws_url);
