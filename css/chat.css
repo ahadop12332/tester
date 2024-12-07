@@ -102,12 +102,11 @@ body {
 }
 
 #c3dot {
-  position: relative;
-  left: 155px;
+  position: absolute;
+  left: 315px;
   display: inline-block;
-  bottom: 15px;
+  bottom: 20px;
 }
-
 
 #chatName {
   font-weight: bold;
