@@ -95,6 +95,7 @@ const messages = document.getElementById('messages');
 const pagemain = document.getElementById("page-main");
 const others = document.getElementById('others');
 const chatName = document.getElementById("chatName");
+const chatPfp = document.querySelector(".profile-img-in");
 
 async function close_chat() {
   pagemain.style.display = 'block';
@@ -109,7 +110,8 @@ async function go_chat(chat_id) {
         pagemain.style.display = 'none';
         chat.style.display = 'inline-block';
         others.style.display = 'none';
-        chatName.textContent = chatState[chat_id]['name']
+        chatName.textContent = chatState[chat_id]['name'];
+        chatPfp.src = chatState[chat_id]['profile_picture'];
         alert(`Loaded chat ${chat_id}`);
       } catch (error) {
         console.error(`Error while loading chat ${chat_id}: ${error}`);
