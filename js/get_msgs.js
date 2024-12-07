@@ -28,5 +28,3 @@ async function get_msgs() {
   }
 }
 
-
-window.get_msgs = get_msgs;
