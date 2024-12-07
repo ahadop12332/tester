@@ -1,5 +1,6 @@
 let ws;
 let chatState = {};
+const loader = document.querySelector('.loader');
 
 async function get_chats() {
   const chatlist_url = "wss://linkup-backend-production.up.railway.app/ws/chatlist/";
@@ -30,6 +31,7 @@ async function get_chats() {
         lchats.forEach(lchat => lchat.remove());
       }
       let chatItems = '';
+      loader.style.display = 'inline-block';
       for (let chat_id of data.chats) {
         try {
           const chatResponse = await fetch(userinfo_url, {
@@ -67,6 +69,7 @@ async function get_chats() {
         }
       }
       chatContainer.innerHTML += chatItems;
+      loader.style.display = 'none';
     } else if (data.error) {
       console.error(`Error: ${data.error}`);
     }
