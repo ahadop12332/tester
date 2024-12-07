@@ -27,3 +27,6 @@ async function get_msgs() {
     setTimeout(get_msgs(), 200);
   }
 }
+
+
+window.get_msgs = get_msgs;
