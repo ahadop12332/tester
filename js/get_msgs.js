@@ -1,7 +1,9 @@
 async function get_msgs() {
   const url = "wss://linkup-backend-production.up.railway.app/ws/msguns/";
   const session = getCookie('session');
+  console.log(`session is ${session}`)
   const check_session = await check_session();
+  console.log(`check_session is ${check_session}`)
   if (check_session !== 'redirect') {
     console.error('Session check failed. Redirecting to login...');
     return;
