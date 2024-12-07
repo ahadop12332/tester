@@ -25,3 +25,4 @@ async function check_session() {
   }
 }
 
+window.check_session = check_session;
