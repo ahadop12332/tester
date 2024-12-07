@@ -1,3 +1,5 @@
+import { check_session } from './js/check_user_logged.js'
+
 async function get_msgs() {
   const url = "wss://linkup-backend-production.up.railway.app/ws/msguns/";
   const session = getCookie('session');
