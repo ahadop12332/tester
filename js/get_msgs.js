@@ -49,4 +49,4 @@ async function get_msgs() {
   };
 }
 
-/* Let's cook 2025 *\
+/* Let's cook 2025 */
