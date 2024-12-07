@@ -10,15 +10,16 @@ async function get_msgs() {
   ws = new WebSocket(url);
   
   ws.onopen = () => {
+    alert('Message Websocket connected');
     ws.send(JSON.stringify({ session }));
   };
 
   ws.onmessage = async (event) => {
-    alert(`New message: ${event.data}`)
+    alert(`New message: ${event.data}`);
   }
 
   ws.onclose = () => {
     console.warn('Message notification Websocket closed, reconnecting...');
-    setTimeout(get_msgs(), 200)
+    setTimeout(get_msgs(), 200);
   }
 }
