@@ -108,8 +108,9 @@ async function go_chat(chat_id) {
     if (chatState[chat_id]) {
       try {
         pagemain.style.display = 'none';
-        chat.style.display = 'inline-block';
         others.style.display = 'none';
+        chat.style.display = 'inline-block';
+        document.title = `${chatState[chat_id]['name']} • Chat`;
         chatName.textContent = chatState[chat_id]['name'];
         chatPfp.src = chatState[chat_id]['profile_picture'];
         alert(`Loaded chat ${chat_id}`);
