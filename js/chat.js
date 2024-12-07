@@ -29,6 +29,7 @@ async function get_chats() {
       if (lchats.length > 0) {
         lchats.forEach(lchat => lchat.remove());
       }
+      let chatItems = '';
       for (let chat_id of data.chats) {
         try {
           const chatResponse = await fetch(userinfo_url, {
@@ -48,7 +49,7 @@ async function get_chats() {
               lastMsg: "You: Thanks for all who made me learn these stuffs.",
             };
 
-            const chatItem = `
+            const chatItems += `
               <div class='list-chats' onclick='go_chat(${chat_id})'>
                 <img src="${upload.img}" class='profile-img'>
                 <div>
@@ -65,6 +66,7 @@ async function get_chats() {
           console.error("Error fetching chat info:", error);
         }
       }
+      chatContainer.innerHTML += chatItems;
     } else if (data.error) {
       console.error(`Error: ${data.error}`);
     }
