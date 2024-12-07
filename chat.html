@@ -3,83 +3,73 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/chat.css">
-<script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
-
-<title>LinkUp</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/chat.css">
+  <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+  <title>Chat • LinkUp</title>
 </head>
 <body>
   <h3 id="hll"></h3>
-  <p id="hl"></hp>
-<div id='chat_with_someone' class="chat_with_someone" id='null' style="display: none;">
-  
-  <div id="chatTop">
-  <i class="fas fa-arrow-left" id="cbicon" onclick="close_chat()"></i>
-  <img src="https://i.imgur.com/mwkxppE.jpeg" class='profile-img-in'>
-  
-  <div id='chatName'>Otazuki</div>
-  
-  <i class="fas fa-ellipsis-v" id="c3dot"></i></div>
-  
-  <div id="messageBox">
-    <img src="https://i.imgur.com/mwkxppE.jpeg" class='profile-img-sender-wc'>
-  <textarea id="writeText" placeholder="Message"></textarea>
-  <i class="fas fa-paperclip" id="attachmentIcon"></i>
-  <span class="iconify" data-icon="mdi:send" data-width="24" data-height="24" id="sendIcon"></span></div>
-  <!-- Messages -->
-  <div id="messages">
-  <div id="messageFrom">
-    Hi
-    <div id="msgTime">9:15</div>
+  <p id="hl"></p>
+  <div id="chat_with_someone" class="chat_with_someone" style="display: none;">
+    <div id="chatTop">
+      <i class="fas fa-arrow-left" id="cbicon" onclick="close_chat()"></i>
+      <img src="https://i.imgur.com/mwkxppE.jpeg" class="profile-img-in">
+      <div id="chatName">Otazuki</div>
+      <i class="fas fa-ellipsis-v" id="c3dot"></i>
+    </div>
+    <div id="messageBox">
+      <img src="https://i.imgur.com/mwkxppE.jpeg" class="profile-img-sender-wc">
+      <textarea id="writeText" placeholder="Message"></textarea>
+      <i class="fas fa-paperclip" id="attachmentIcon"></i>
+      <span class="iconify" data-icon="mdi:send" data-width="24" data-height="24" id="sendIcon"></span>
+    </div>
+    <div id="messages">
+      <div id="messageFrom">
+        Hi
+        <div id="msgTime">9:15</div>
+      </div>
+      <div id="messageFrom">
+        Hi bro
+        <div id="msgTime">9:15</div>
+      </div>
+      <div id="messageFrom">
+        Hi bro
+        <div id="msgTime">9:15</div>
+      </div>
+      <div id="messageTo">
+        hm
+        <div id="msgTime">9:19</div>
+      </div>
+    </div>
   </div>
-  
-  <div id="messageFrom">
-    Hi bro
-    <div id="msgTime">9:15</div>
+  <div class="page-main" id="page-main">
+    <h1 class="linkup-text">LinkUp</h1>
+    <hr class="m-hr">
   </div>
-  
-  <div id="messageFrom">
-    Hi bro 
-    <div id="msgTime">9:15</div>
+  <div class="others" id="others">
+    <br><br>
   </div>
-  <div id="messageTo">
-    hm 
-    <div id="msgTime">9:19</div>
-  </div>
-  
-  </div>
-  
-</div>
-<div class='page-main' id='page-main'>
-  <h1 class='linkup-text'>LinkUp</h1>
-  <hr class="m-hr">
-
-</div>
-<div class='others' id='others'>
-<br><br>
-</div>
-<script src="js/get_cookie.js"></script>
-<script src="js/check_user_logged.js"></script>
-<script src="js/chat.js"></script>
-<script src="js/get_msgs.js"></script>
-<script>
-  get_chats()
-  get_msgs()
-  document.addEventListener("DOMContentLoaded", () => {
-    get_chats()
-    get_msgs()
-  });
-  async function updatePage() {
-    const session_stats = await check_session();
-
-    if (session_stats !== 'redirect') {
-      window.location.href = "/index.html";
+  <script src="js/get_cookie.js"></script>
+  <script src="js/check_user_logged.js"></script>
+  <script src="js/chat.js"></script>
+  <script src="js/get_msgs.js"></script>
+  <script>
+    get_chats();
+    get_msgs();
+    document.addEventListener("DOMContentLoaded", () => {
+      get_chats();
+      get_msgs();
+    });
+    async function updatePage() {
+      const session_stats = await check_session();
+      if (session_stats !== 'redirect') {
+        window.location.href = "/index.html";
+      }
     }
-  }
-  updatePage();
-  document.body.classList.toggle('dark-mode');
-</script>
+    updatePage();
+    document.body.classList.toggle('dark-mode');
+  </script>
 </body>
-  </html>
+</html>
