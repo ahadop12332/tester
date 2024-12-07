@@ -117,3 +117,5 @@ async function close_chat() {
 document.querySelector("#messageBox textarea").addEventListener("focus", function (e) {
   e.preventDefault();
 });
+
+window.get_chats = get_chats;
