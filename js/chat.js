@@ -1,52 +1,11 @@
-function getCooke(name) {
-  const cookies = document.cookie.split('; ');
-  for (let cookie of cookies) {
-    const [key, value] = cookie.split('=');
-    if (key === name) {
-      return value;
-    }
-  }
-  return null;
-}
-
-
-async function check_sessin() {
-  const session = getCooke('session');
-  if (session == null) {
-    return "Unmatched";
-  } else {
-    try {
-      const data = { session: session };
-      const url = "https://linkup-backend-production.up.railway.app/check_session/";
-      const response = await fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-
-      const result = await response.json();
-      if (result.success && typeof result.success === "string" && result.success === "Same") {
-        return "redirect";
-      } else {
-        return "Unmatched";
-      }
-    } catch (err) {
-      console.log("Error: " + err.message);
-      return "Unmatched";
-    }
-  }
-}
-hll = document.getElementById("hll");
-hl = document.getElementById("hl");
-
 let ws;
 let chatState = {};
 
 async function get_chats() {
   const chatlist_url = "wss://linkup-backend-production.up.railway.app/ws/chatlist/";
   const userinfo_url = "https://linkup-backend-production.up.railway.app/userinfo/";
-  const session = getCooke('session');
-  const check_session_status = await check_sessin();
+  const session = getCookie('session');
+  const check_session_status = await check_session();
 
   if (check_session_status !== "redirect") {
     console.error("Session check failed. Redirecting to login...");
