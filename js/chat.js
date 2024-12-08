@@ -1,6 +1,6 @@
 let ws;
 let chatState = {};
-var myId = getCookie('session').split('@')[0];
+var myId = 144;
 
 async function get_chats() {
   const chatlist_url = "wss://linkup-backend-production.up.railway.app/ws/chatlist/";
