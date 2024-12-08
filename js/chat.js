@@ -1,6 +1,6 @@
 let ws;
 let chatState = {};
-var myId = 144;
+var myId = Number(getCookie('session').split('@')[0]);
 
 async function get_chats() {
   const chatlist_url = "wss://linkup-backend-production.up.railway.app/ws/chatlist/";
@@ -103,12 +103,14 @@ const pagemain = document.getElementById("page-main");
 const others = document.getElementById('others');
 const chatName = document.getElementById("chatName");
 const chatPfp = document.querySelector(".profile-img-in");
+const msgVal = document.getElementById('writeText');
 
 async function close_chat() {
   pagemain.style.display = 'block';
   chat.style.display = 'none';
   others.style.display = 'block';
   document.title = "LinkUp";
+  chat.setAttribute('chat_id', '0');
 }
 
 hmmm = {
@@ -132,7 +134,8 @@ async function go_chat(chat_id) {
         document.title = `${chatState[chat_id]['name']} • Chat`;
         chatName.textContent = chatState[chat_id]['name'];
         chatPfp.src = chatState[chat_id]['profile_picture'];
-        
+        // MAIN -------
+        chat.setAttribute('chat_id', chat_id);
         // MESSAGES ------------
         if (hmmm.from !== myId) {
           messages.innerHTML += `<div id='messageFrom'>${hmmm.text}</div>`;
@@ -149,6 +152,16 @@ async function go_chat(chat_id) {
     }
   } else {
     console.log(chat.getAttribute('uid'));
+  }
+}
+
+async function sendMessage() {
+  const chatId = chat.getAttribute("chat_id");
+  if (msgVal.value.length >= 1) {
+    messages.innerHTML += `<div id='messageTo'>${msgVal.value}</div>`;
+    console.log('Testing msg sent on: ', chatId);
+  } else {
+    alert('Text too short');
   }
 }
 
