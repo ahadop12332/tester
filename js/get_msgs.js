@@ -38,8 +38,8 @@ async function get_msgs() {
   ws.onmessage = (event) => {
     msg = JSON.parse(event.data);
     if (msg.error && msg.error === "INVALID USER OR SESSION") {
+      ws.close();
       window.location.href = "/index.html";
-      return;
     } else if (msg.error) {
       console.error(`Error: ${msg}`);
     } else {
@@ -49,7 +49,7 @@ async function get_msgs() {
 
   ws.onclose = () => {
     console.warn('Message WebSocket closed, reconnecting...');
-    setTimeout(() => get_msgs(), 200);
+    setTimeout(() => get_msgs(), 600);
   };
 
   ws.onerror = (error) => {
