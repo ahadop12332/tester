@@ -43,10 +43,12 @@ async function get_msgs() {
       window.location.href = "/index.html";
     } else if (msg.error) {
       console.error(`Error: ${msg.error}`);
-    } else {
+    } else if (msg.data) {
       msg.data.forEach((h) => {
         console.log(`New message\nFrom: ${h.from}\n${h.text}`);
       });
+    } else if (msg.info) {
+      console.log(`INFO: ${msg.info}`);
     }
   };
 
