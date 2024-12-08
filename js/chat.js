@@ -1,3 +1,4 @@
+let ws;
 let chatState = {};
 
 async function get_chats() {
@@ -17,7 +18,7 @@ async function get_chats() {
 
   ws.onopen = () => {
     ws.send(JSON.stringify({ session }));
-    console.log("Chatlist websocket connected!");
+    console.log('Chatlist websocket connected!');
   };
 
   ws.onmessage = async (event) => {
@@ -75,7 +76,7 @@ async function get_chats() {
   };
 
   ws.onclose = () => {
-    console.warn("Chatlist webSocket closed. Reconnecting...");
+    console.log("Chatlist WebSocket closed. Reconnecting...");
     setTimeout(get_chats, 600);
   };
 
@@ -134,4 +135,3 @@ async function go_chat(chat_id) {
 document.querySelector("#messageBox textarea").addEventListener("focus", function (e) {
   e.preventDefault();
 });
-
