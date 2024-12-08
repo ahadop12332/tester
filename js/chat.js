@@ -1,5 +1,6 @@
 let ws;
 let chatState = {};
+var myId = getCookie('session').split('@')[0];
 
 async function get_chats() {
   const chatlist_url = "wss://linkup-backend-production.up.railway.app/ws/chatlist/";
@@ -93,6 +94,13 @@ document.addEventListener("visibilitychange", () => {
   }
 });
 
+hmmm = {
+  "from": 143,
+  "message_id": "56194f6e-e7eb-4555-8c12-d2f6efba1fc2",
+  "text": "Hello from javascript",
+  "timestamp": "2024-12-08T14:04:52.309209+05:30",
+  "seen": false
+}
 
 const chat = document.getElementById('chat_with_someone');
 const messages = document.getElementById('messages');
@@ -112,13 +120,19 @@ async function go_chat(chat_id) {
   if (chat_id) {
     if (chatState[chat_id]) {
       try {
+        // DISPLAY -----------
         pagemain.style.display = 'none';
         others.style.display = 'none';
         chat.style.display = 'inline-block';
+        
+        // TOP STUFFS -----------
         document.title = `${chatState[chat_id]['name']} • Chat`;
         chatName.textContent = chatState[chat_id]['name'];
         chatPfp.src = chatState[chat_id]['profile_picture'];
-        console.log(`Loaded chat ${chat_id}`);
+        
+        // MESSAGES ------------
+        g
+        
       } catch (error) {
         console.error(`Error while loading chat ${chat_id}: ${error}`);
       }
