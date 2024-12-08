@@ -1,4 +1,3 @@
-var isOpened;
 async function get_msgs() {
   const ws_url = "wss://linkup-backend-production.up.railway.app/ws/msguns/";
   const api_url = "https://linkup-backend-production.up.railway.app/check_session/";
@@ -28,10 +27,8 @@ async function get_msgs() {
     console.warn("No session cookie found.");
     return;
   }
-  if (!isOpened) {
-    const ws = new WebSocket(ws_url);
-    isOpened = true;
-  }
+  
+  const ws = new WebSocket(ws_url);
   ws.onopen = () => {
     console.log('Message WebSocket connected');
     ws.send(JSON.stringify({ session }));
@@ -56,7 +53,6 @@ async function get_msgs() {
 
   ws.onclose = () => {
     console.warn('Message WebSocket closed, reconnecting...');
-    isOpened = false;
     setTimeout(() => get_msgs(), 600);
   };
 
