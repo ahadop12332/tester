@@ -159,7 +159,7 @@ async function sendMessage() {
   const chatId = chat.getAttribute("chat_id");
   if (msgVal.value.length >= 1) {
     messages.innerHTML += `<div id='messageTo'>${msgVal.value}</div>`;
-    msgVal.setAttribute('value', '');
+    msgVal.value = '';
     console.log('Testing msg sent on: ', chatId);
   } else {
     alert('Text too short');
