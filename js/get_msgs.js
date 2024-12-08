@@ -1,4 +1,4 @@
-var mWs;
+let ws;
 
 async function get_msgs() {
   const ws_url = "wss://linkup-backend-production.up.railway.app/ws/msguns/";
@@ -29,10 +29,9 @@ async function get_msgs() {
     console.warn("No session cookie found.");
     return;
   }
-  if (mWs && mWs.readyState === WebSocket.OPEN) return;
+  if (ws && ws.readyState === WebSocket.OPEN) return;
   
-  const mWs = new WebSocket(ws_url);
-  const ws = mWs;
+  const ws = new WebSocket(ws_url);
   ws.onopen = () => {
     console.log('Message WebSocket connected');
     ws.send(JSON.stringify({ session }));
