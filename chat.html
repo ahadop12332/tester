@@ -11,7 +11,7 @@
   <title>LinkUp</title>
 </head>
 <body>
-  <div id="chat_with_someone" class="chat_with_someone" style="display: none;">
+  <div id="chat_with_someone" class="chat_with_someone" chat_id='0' style="display: none;">
     <div id="chatTop">
       <i class="fas fa-arrow-left" id="cbicon" onclick="close_chat()"></i>
       <img src="https://i.imgur.com/mwkxppE.jpeg" class="profile-img-in">
@@ -22,7 +22,7 @@
       <img src="https://i.imgur.com/mwkxppE.jpeg" class="profile-img-sender-wc">
       <textarea id="writeText" placeholder="Message"></textarea>
       <i class="fas fa-paperclip" id="attachmentIcon"></i>
-      <span class="iconify" data-icon="mdi:send" data-width="24" data-height="24" id="sendIcon"></span>
+      <span class="iconify" data-icon="mdi:send" data-width="24" data-height="24" id="sendIcon" onclick="sendMessage()"></span>
     </div>
     <div id="messages">
       <div id="messageFrom">
