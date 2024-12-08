@@ -118,7 +118,7 @@ async function go_chat(chat_id) {
         document.title = `${chatState[chat_id]['name']} • Chat`;
         chatName.textContent = chatState[chat_id]['name'];
         chatPfp.src = chatState[chat_id]['profile_picture'];
-        alert(`Loaded chat ${chat_id}`);
+        console.log(`Loaded chat ${chat_id}`);
       } catch (error) {
         console.error(`Error while loading chat ${chat_id}: ${error}`);
       }
