@@ -44,7 +44,9 @@ async function get_msgs() {
     } else if (msg.error) {
       console.error(`Error: ${msg.error}`);
     } else {
-      console.log(`New message: ${msg.data}`);
+      msg.data.forEach((h) => {
+        console.log(`New message\nFrom: ${h.from}\n${h.text}`);
+      });
     }
   };
 
