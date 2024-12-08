@@ -138,6 +138,7 @@ async function go_chat(chat_id) {
           messages.innerHTML += `<div id='messageFrom'>${hmmm.text}</div>`;
         } else {
           messages.innerHTML += `<div id='messageTo'>${hmmm.text}</div>`;
+        }
         // ------------------------------
       } catch (error) {
         console.error(`Error while loading chat ${chat_id}: ${error}`);
