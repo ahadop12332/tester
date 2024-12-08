@@ -1,4 +1,3 @@
-let ws;
 let chatState = {};
 
 async function get_chats() {
@@ -18,6 +17,7 @@ async function get_chats() {
 
   ws.onopen = () => {
     ws.send(JSON.stringify({ session }));
+    console.log("Chatlist websocket connected!");
   };
 
   ws.onmessage = async (event) => {
@@ -75,13 +75,12 @@ async function get_chats() {
   };
 
   ws.onclose = () => {
-    console.log("WebSocket closed. Reconnecting...");
+    console.warn("Chatlist webSocket closed. Reconnecting...");
     setTimeout(get_chats, 600);
   };
 
   ws.onerror = (error) => {
-    console.error("WebSocket error:", error);
-    alert("WebSocket error:", error);
+    console.error("Chatlist WebSocket error:", error);
     setTimeout(get_chats, 500);
   };
 }
