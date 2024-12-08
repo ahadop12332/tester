@@ -94,16 +94,11 @@ document.addEventListener("visibilitychange", () => {
   }
 });
 
-hmmm = {
-  "from": 143,
-  "message_id": "56194f6e-e7eb-4555-8c12-d2f6efba1fc2",
-  "text": "Hello from javascript",
-  "timestamp": "2024-12-08T14:04:52.309209+05:30",
-  "seen": false
-}
 
 const chat = document.getElementById('chat_with_someone');
 const messages = document.getElementById('messages');
+const messageFrom = document.getElementById('messageFrom');
+const messageTo = document.getElementById('messageTo');
 const pagemain = document.getElementById("page-main");
 const others = document.getElementById('others');
 const chatName = document.getElementById("chatName");
@@ -114,6 +109,14 @@ async function close_chat() {
   chat.style.display = 'none';
   others.style.display = 'block';
   document.title = "LinkUp";
+}
+
+hmmm = {
+  "from": 143,
+  "message_id": "56194f6e-e7eb-4555-8c12-d2f6efba1fc2",
+  "text": "Hello from javascript",
+  "timestamp": "2024-12-08T14:04:52.309209+05:30",
+  "seen": false
 }
 
 async function go_chat(chat_id) {
@@ -131,8 +134,11 @@ async function go_chat(chat_id) {
         chatPfp.src = chatState[chat_id]['profile_picture'];
         
         // MESSAGES ------------
-        g
-        
+        if (hmmm.from !== myId) {
+          messages.innerHTML += `<div id='messageFrom'>${hmmm.text}</div>`;
+        } else {
+          messages.innerHTML += `<div id='messageTo'>${hmmm.text}</div>`;
+        // ------------------------------
       } catch (error) {
         console.error(`Error while loading chat ${chat_id}: ${error}`);
       }
