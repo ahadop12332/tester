@@ -56,6 +56,7 @@ async function get_msgs() {
 
   ws.onclose = () => {
     console.warn('Message WebSocket closed, reconnecting...');
+    isOpened = false;
     setTimeout(() => get_msgs(), 600);
   };
 
