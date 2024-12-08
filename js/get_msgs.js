@@ -1,4 +1,4 @@
-let mWs;
+var mWs;
 
 async function get_msgs() {
   const ws_url = "wss://linkup-backend-production.up.railway.app/ws/msguns/";
