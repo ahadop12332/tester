@@ -58,7 +58,7 @@ async function get_msgs() {
   };
 
   ws.onerror = (error) => {
-    console.error('WebSocket error:', error);
+    console.error('Message WebSocket error:', error);
   };
 }
 
