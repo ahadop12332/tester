@@ -36,14 +36,15 @@ async function get_msgs() {
   };
 
   ws.onmessage = (event) => {
-    msg = event.data;
+    msg = JSON.parse(event.data);
     if (msg.error && msg.error === "INVALID USER OR SESSION") {
       ws.close();
+      console.log('Session invalid/expired/someone logged, so closing ws signup again!');
       window.location.href = "/index.html";
     } else if (msg.error) {
-      console.error(`Error: ${msg}`);
+      console.error(`Error: ${msg.error}`);
     } else {
-      console.log(`New message: ${msg}`);
+      console.log(`New message: ${msg.data}`);
     }
   };
 
