@@ -1,11 +1,12 @@
 let ws;
+var session;
 let chatState = {};
 var myId = Number(getCookie('session').split('@')[0]);
 
 async function get_chats() {
   const chatlist_url = "wss://linkup-backend-production.up.railway.app/ws/chatlist/";
   const userinfo_url = "https://linkup-backend-production.up.railway.app/userinfo/";
-  const session = getCookie('session');
+  session = getCookie('session');
   const check_session_status = await check_session();
 
   if (check_session_status !== "redirect") {
@@ -159,7 +160,8 @@ async function go_chat(chat_id) {
 async function sendMessage() {
   const chatId = chat.getAttribute("chat_id");
   if (msgVal.value.length >= 1) {
-    messages.innerHTML += `<div id='messageTo'>${msgVal.value}</div>`;
+    const time = new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit', hour12: true });
+    messages.innerHTML += `<div id='messageTo'>${msgVal.value} <div id="msgTime">${time}</div> </div>`;
     msgVal.value = '';
     console.log('Testing msg sent on: ', chatId);
   } else {
