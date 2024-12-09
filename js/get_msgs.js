@@ -77,10 +77,11 @@ async function getChatMsg() {
   }
 }
 
-a = document.querySelectorAll('.list-chats');
-a.addEventListener('click', function() {
-  getChatMsg();
-  console.warn('Hmm nice');
+const a = document.querySelectorAll('.list-chats');
+a.forEach(e => {
+  e.addEventListener('click', function() {
+    getChatMsg();
+    console.warn('Hmm nice');
+  });
 });
-
 /* Let's cook 2025 */
