@@ -42,11 +42,12 @@ async function get_msgs() {
       if (loadChatWsClosed) {
         const chatId = chat.getAttribute("chat_id");
         if (chatId !== '0') {
-          ws.send({'chat_id': 
+          ws.send({'chat_id': String(chatId)});
         }
       } else {
         break;
       }
+      await sleep(300);
     }
   };
 
