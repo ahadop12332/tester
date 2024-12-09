@@ -54,7 +54,7 @@ async function get_chats() {
             };
 
             chatItems += `
-              <div class='list-chats' onclick='go_chat(${chat_id}) getChatMsg()'>
+              <div class='list-chats' onclick='go_chat(${chat_id}); getChatMsg();'>
                 <img src="${upload.img}" class='profile-img'>
                 <div>
                   <p class="chatname">${upload.name}</p>
