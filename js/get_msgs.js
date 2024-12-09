@@ -35,17 +35,20 @@ async function get_msgs() {
   ws.onopen = () => {
     console.log('Message WebSocket connected');
     ws.send(JSON.stringify({ session }));
-    while (true) {
-      if (loadChatWsClosed) {
-        const chatId = chat.getAttribute("chat_id");
-        if (chatId !== '0') {
-          ws.send({'chat_id': String(chatId)});
-        }
-      } else {
-        break;
-      }
-    }
   };
+
+  while (true) {
+    if (loadChatWsClosed) {
+      const chatId = chat.getAttribute("chat_id");
+      if (chatId !== '0') {
+        ws.send({'chat_id': String(chatId)});
+      }
+    } else {
+      break;
+    }
+  }
+
+  
 
   ws.onmessage = (event) => {
     msg = JSON.parse(event.data);
