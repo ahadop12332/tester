@@ -1,5 +1,5 @@
 var isChatWsOpen;
-var msgs;
+export var msgs;
 var mWs;
 
 async function get_msgs() {
@@ -68,20 +68,4 @@ async function get_msgs() {
   };
 }
 
-async function getChatMsg() {
-  if (isChatWsOpen) {
-    const chatId = chat.getAttribute("chat_id");
-    if (chatId !== '0') {
-      mWs.send(JSON.stringify({ chat_id: String(chatId) }));
-    }
-  }
-}
-
-const a = document.querySelectorAll('.list-chats');
-a.forEach(e => {
-  e.addEventListener('click', function() {
-    getChatMsg();
-    console.warn('Hmm nice');
-  });
-});
 /* Let's cook 2025 */
