@@ -1,7 +1,3 @@
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
 var loadChatWsClosed = false;
 var msgs;
 
@@ -48,7 +44,6 @@ async function get_msgs() {
       } else {
         break;
       }
-      await sleep(300);
     }
   };
 
