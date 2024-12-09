@@ -1,4 +1,4 @@
-import { msgs } from './js/get_msgs.js';
+import { mWs } from './js/get_msgs.js';
 
 let ws;
 var session;
