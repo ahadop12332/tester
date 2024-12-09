@@ -41,19 +41,19 @@ async function get_msgs() {
 
   
   mWs.onmessage = (event) => {
-    msg = JSON.parse(event.data);
-    if (msg.error && msg.error === "INVALID USER OR SESSION") {
+    msgs = JSON.parse(event.data);
+    if (msgs.error && msgs.error === "INVALID USER OR SESSION") {
       ws.close();
       console.log('Session invalid/expired/someone logged, so closing ws signup again!');
       window.location.href = "/index.html";
-    } else if (msg.error) {
-      console.error(`Error: ${msg.error}`);
-    } else if (msg.data) {
-      msg.data.forEach((h) => {
+    } else if (msgs.error) {
+      console.error(`Error: ${msgs.error}`);
+    } else if (msgs.data) {
+      msgs.data.forEach((h) => {
         console.log(`New message\nFrom: ${h.from}\n${h.text}`);
       });
-    } else if (msg.info) {
-      console.log(`INFO: ${msg.info}`);
+    } else if (msgs.info) {
+      console.log(`INFO: ${msgs.info}`);
     }
   };
 
