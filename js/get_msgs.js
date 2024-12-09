@@ -1,3 +1,9 @@
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+var loadChatWsClosed = false;
+
 async function get_msgs() {
   const ws_url = "wss://linkup-backend-production.up.railway.app/ws/msguns/";
   const api_url = "https://linkup-backend-production.up.railway.app/check_session/";
@@ -32,6 +38,16 @@ async function get_msgs() {
   ws.onopen = () => {
     console.log('Message WebSocket connected');
     ws.send(JSON.stringify({ session }));
+    while (true) {
+      if (loadChatWsClosed) {
+        const chatId = chat.getAttribute("chat_id");
+        if (chatId !== '0') {
+          ws.send({'chat_id': 
+        }
+      } else {
+        break;
+      }
+    }
   };
 
   ws.onmessage = (event) => {
@@ -53,6 +69,7 @@ async function get_msgs() {
 
   ws.onclose = () => {
     console.warn('Message WebSocket closed, reconnecting...');
+    loadChatWsClosed = true;
     setTimeout(() => get_msgs(), 600);
   };
 
