@@ -1,6 +1,6 @@
 var isChatWsOpen;
-export var msgs;
-var mWs;
+var msgs;
+export var mWs = '';
 
 async function get_msgs() {
   const ws_url = "wss://linkup-backend-production.up.railway.app/ws/loadMsg/";
