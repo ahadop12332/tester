@@ -2,7 +2,7 @@ var isChatWsOpen;
 var msgs;
 var mWs;
 
-async function get_msgs() {
+export async function get_msgs() {
   const ws_url = "wss://linkup-backend-production.up.railway.app/ws/loadMsg/";
   const api_url = "https://linkup-backend-production.up.railway.app/check_session/";
   const session = getCookie('session');
