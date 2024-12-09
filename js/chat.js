@@ -1,9 +1,11 @@
+import { msgs } from './js/get_msgs.js';
+
 let ws;
 var session;
 let chatState = {};
 var myId = Number(getCookie('session').split('@')[0]);
 
-async function get_chats() {
+export async function get_chats() {
   const chatlist_url = "wss://linkup-backend-production.up.railway.app/ws/chatlist/";
   const userinfo_url = "https://linkup-backend-production.up.railway.app/userinfo/";
   session = getCookie('session');
