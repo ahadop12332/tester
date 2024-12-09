@@ -77,4 +77,8 @@ async function getChatMsg() {
   }
 }
 
+document.querySelectorAll('.list-chats').addEventListener('click', function() {
+  getChatMsg()
+});
+
 /* Let's cook 2025 */
