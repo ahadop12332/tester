@@ -47,12 +47,10 @@
       </form>
     </div>
   </div>
-  <script type='module' src="js/get_cookie.js"></script>
-  <script type='module' src="js/check_user_logged.js"></script>
+  <script src="js/get_cookie.js"></script>
+  <script src="js/check_user_logged.js"></script>
   <script src="js/signup_login.js"></script>
-  <script type='module'>
-    import { getCookie } from './js/get_cookie.js';
-    import { check_session } from './js/check_user_logged.js';
+  <script>
     
     async function check_logged() {
       const session_stats = await check_session();
