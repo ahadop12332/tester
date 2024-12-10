@@ -115,6 +115,7 @@ async function close_chat() {
   chat.setAttribute('chat_id', '0');
 }
 
+/*
 hmmm = {
   "from": 143,
   "message_id": "56194f6e-e7eb-4555-8c12-d2f6efba1fc2",
@@ -122,6 +123,7 @@ hmmm = {
   "timestamp": "2024-12-08T14:04:52.309209+05:30",
   "seen": false
 }
+*/
 
 async function go_chat(chat_id) {
   if (chat_id) {
@@ -139,11 +141,19 @@ async function go_chat(chat_id) {
         // MAIN -------
         chat.setAttribute('chat_id', chat_id);
         // MESSAGES ------------
-        if (hmmm.from !== myId) {
-          messages.innerHTML += `<div id='messageFrom'>${hmmm.text}</div>`;
-        } else {
-          messages.innerHTML += `<div id='messageTo'>${hmmm.text}</div>`;
-        }
+        mWs.send({'chat_id': chat_id});
+        mWs.send({'chat_id': chat_id});
+        if (msgs.data) {
+          msgs.data.forEach((m) => {
+            if (m.from && m.from === chat_id || m.to && m.to === chat_id) {
+              if (m.from) {
+                messages.innerHTML += `<div id='messageFrom'>${m.text}</div>`;
+              } else {
+                messages.innerHTML += `<div id='messageTo'>${m.text}</div>`;
+              }
+            };
+          };
+        };
         // ------------------------------
       } catch (error) {
         console.error(`Error while loading chat ${chat_id}: ${error}`);
