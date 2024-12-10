@@ -2,6 +2,7 @@ let ws;
 var session;
 let chatState = {};
 var myId = Number(getCookie('session').split('@')[0]);
+var chatList = [];
 
 async function get_chats() {
   const chatlist_url = "wss://linkup-backend-production.up.railway.app/ws/chatlist/";
@@ -35,7 +36,7 @@ async function get_chats() {
       let chatItems = '';
       document.querySelector('.loader').style.display = 'inline-block';
       for (let chat_id of data.chats) {
-        mWs.send(JSON.stringify({'chat_id': chat_id}));
+        chatList.push(chat_id);
         try {
           const chatResponse = await fetch(userinfo_url, {
             method: "POST",
@@ -97,6 +98,9 @@ document.addEventListener("visibilitychange", () => {
   }
 });
 
+chatList.forEach((m) => {
+  mWs.send(JSON.stringify({'chat_id': chat_id}));
+});
 
 const chat = document.getElementById('chat_with_someone');
 const messages = document.getElementById('messages');
