@@ -172,7 +172,7 @@ async function sendMessage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           session: session,
-          chat_id: chatId,
+          to: chatId,
           text: msgVal.value,
         }),
       });
