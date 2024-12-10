@@ -1,9 +1,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <p id="change_txt"></p>
 
-<script src="js/get_cookie.js"></script>
-<script src="js/check_user_logged.js"></script>
-<script>
+<script type='module' src="js/get_cookie.js"></script>
+<script type='module' src="js/check_user_logged.js"></script>
+<script type='module'>
+  import { getCookie } from './js/get_cookie.js';
+  import { check_session } from './js/check_user_logged.js';
+  
   async function updatePage() {
     const hm = document.getElementById('change_txt');
     const session_stats = await check_session();
