@@ -2,7 +2,7 @@ var isChatWsOpen;
 var msgs;
 var mWs;
 
-export async function get_msgs() {
+async function get_msgs() {
   const ws_url = "wss://linkup-backend-production.up.railway.app/ws/loadMsg/";
   const api_url = "https://linkup-backend-production.up.railway.app/check_session/";
   const session = getCookie('session');
@@ -67,8 +67,4 @@ export async function get_msgs() {
     console.error('Message WebSocket error:', error);
   };
 }
-
-
-export { mWs };
-
 /* Let's cook 2025 */
