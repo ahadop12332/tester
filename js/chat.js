@@ -96,10 +96,6 @@ document.addEventListener("visibilitychange", () => {
   }
 });
 
-/*
-chatList.forEach((m) => {
-  mWs.send(JSON.stringify({'chat_id': chat_id}));
-}); */
 
 const chat = document.getElementById('chat_with_someone');
 const messages = document.getElementById('messages');
@@ -118,16 +114,6 @@ async function close_chat() {
   document.title = "LinkUp";
   chat.setAttribute('chat_id', '0');
 }
-
-/*
-hmmm = {
-  "from": 143,
-  "message_id": "56194f6e-e7eb-4555-8c12-d2f6efba1fc2",
-  "text": "Hello from javascript",
-  "timestamp": "2024-12-08T14:04:52.309209+05:30",
-  "seen": false
-}
-*/
 
 async function go_chat(chat_id) {
   if (chat_id) {
@@ -179,7 +165,13 @@ async function go_chat(chat_id) {
 async function sendMessage() {
   const chatId = chat.getAttribute("chat_id");
   if (msgVal.value.length >= 1) {
-    const time = new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit', hour12: true });
+    const sendUrl = "https://linkup-backend-production.up.railway.app/send_message/";
+    // const time = new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit', hour12: true });
+    const res = await fetch(sendUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({"session": session, "chat_id": }),
+    });
     messages.innerHTML += `<div id='messageTo'>${msgVal.value} <div id="msgTime">${time}</div> </div>`;
     msgVal.value = '';
     console.log('Testing msg sent on: ', chatId);
