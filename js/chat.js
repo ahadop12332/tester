@@ -176,8 +176,8 @@ async function sendMessage() {
           text: msgVal.value,
         }),
       });
-      const responseText = await res.text();
-      if (responseText === "Message sent") {
+      const resJson = await res.json();
+      if (resJson.success && resJson.success === "Message sent") {
         messages.innerHTML += `<div id='messageTo'>${msgVal.value}</div>`;
         msgVal.value = "";
       } else {
