@@ -41,8 +41,7 @@ async function get_msgs() {
     };
 
     mWs.onmessage = (event) => {
-      oh = JSON.parse(event.data);
-      msgs = oh.reverse();
+      msgs = JSON.parse(event.data);
       if (msgs.error && msgs.error === "INVALID USER OR SESSION") {
         mWs.close();
         console.log('Session invalid/expired/someone logged, so closing ws signup again!');
