@@ -141,19 +141,22 @@ async function go_chat(chat_id) {
         // MAIN -------
         chat.setAttribute('chat_id', chat_id);
         // MESSAGES ------------
-        mWs.send({'chat_id': chat_id});
-        mWs.send({'chat_id': chat_id});
-        if (msgs.data) {
+        mWs.send(JSON.stringify({'chat_id': chat_id}));
+        if (msgs && msgs.data && msgs.data.length > 0) {
+          let messageHTML = '';
           msgs.data.forEach((m) => {
-            if (m.from && m.from === chat_id || m.to && m.to === chat_id) {
+            if ((m.from && m.from === chat_id) || (m.to && m.to === chat_id)) {
               if (m.from) {
-                messages.innerHTML += `<div id='messageFrom'>${m.text}</div>`;
+                messageHTML += `<div id='messageTo'>${m.text}</div>`;
               } else {
-                messages.innerHTML += `<div id='messageTo'>${m.text}</div>`;
+                messageHTML += `<div id='messageFrom'>${m.text}</div>`;
               }
-            };
-          };
-        };
+            }
+          });
+          messages.innerHTML += messageHTML;
+        } else {
+          console.warn("No messages to display.");
+        }
         // ------------------------------
       } catch (error) {
         console.error(`Error while loading chat ${chat_id}: ${error}`);
@@ -166,6 +169,7 @@ async function go_chat(chat_id) {
     console.log(chat.getAttribute('uid'));
   }
 }
+
 
 async function sendMessage() {
   const chatId = chat.getAttribute("chat_id");
