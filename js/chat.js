@@ -170,11 +170,15 @@ async function sendMessage() {
     const res = await fetch(sendUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({"session": session, "chat_id": }),
+      body: JSON.stringify({"session": session, "chat_id": chat_id, "text": msgVal.value}),
     });
-    messages.innerHTML += `<div id='messageTo'>${msgVal.value} <div id="msgTime">${time}</div> </div>`;
-    msgVal.value = '';
-    console.log('Testing msg sent on: ', chatId);
+    if (res === "Message sent") {
+      messages.innerHTML += `<div id='messageTo'>${msgVal.value} <div id="msgTime">${time}</div> </div>`;
+      msgVal.value = '';
+      console.log('Testing msg sent on: ', chatId);
+    else {
+      alert(`Error: ${res}`
+    }
   } else {
     alert('Text too short');
   }
