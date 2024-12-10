@@ -135,7 +135,7 @@ async function go_chat(chat_id) {
         mWs.send(JSON.stringify({'chat_id': chat_id}));
         if (msgs && msgs.data && msgs.data.length > 0) {
           let messageHTML = '';
-          msgs.data.reverse().forEach((m) => {
+          msgs.data.forEach((m) => {
             if ((m.from && m.from === chat_id) || (m.to && m.to === chat_id)) {
               if (m.to) {
                 messageHTML += `<div id='messageTo'>${m.text}</div>`;
