@@ -170,7 +170,7 @@ async function sendMessage() {
     const res = await fetch(sendUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({"session": session, "chat_id": chat_id, "text": msgVal.value}),
+      body: JSON.stringify({"session": session, "chat_id": chatId, "text": msgVal.value}),
     });
     if (res === "Message sent") {
       messages.innerHTML += `<div id='messageTo'>${msgVal.value} <div id="msgTime">${time}</div> </div>`;
