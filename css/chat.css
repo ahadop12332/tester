@@ -15,12 +15,6 @@ body {
     align-items: center;
     gap: 10px;
 }
-.linkup-text:before {
-    content: '\f086';
-    font-family: "Font Awesome 6 Free";
-    font-weight: 900;
-    color: #0284c7;
-}
 .m-hr {
     position: relative;
     bottom: 8px;
