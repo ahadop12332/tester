@@ -1,3 +1,5 @@
+import { getCookie } from './js/get_cookie.js';
+
 export async function check_session() {
   const session = getCookie('session');
   if (session == null) {
