@@ -166,24 +166,31 @@ async function sendMessage() {
   const chatId = chat.getAttribute("chat_id");
   if (msgVal.value.length >= 1) {
     const sendUrl = "https://linkup-backend-production.up.railway.app/send_message/";
-    // const time = new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit', hour12: true });
-    const res = await fetch(sendUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({"session": session, "chat_id": chatId, "text": msgVal.value}),
-    });
-    if (res === "Message sent") {
-      messages.innerHTML += `<div id='messageTo'>${msgVal.value} <div id="msgTime">${time}</div> </div>`;
-      msgVal.value = '';
-      console.log('Testing msg sent on: ', chatId);
-    else {
-      alert(`Error: ${res}`
+    try {
+      const res = await fetch(sendUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          session: session,
+          chat_id: chatId,
+          text: msgVal.value,
+        }),
+      });
+      const responseText = await res.text();
+      if (responseText === "Message sent") {
+        messages.innerHTML += `<div id='messageTo'>${msgVal.value}</div>`;
+        msgVal.value = "";
+      } else {
+        alert(`Error: ${responseText}`);
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Failed to send the message.");
     }
   } else {
-    alert('Text too short');
+    alert("Text too short");
   }
 }
-
 
 document.querySelector("#messageBox textarea").addEventListener("focus", function (e) {
   e.preventDefault();
