@@ -1,4 +1,6 @@
 import { mWs } from './js/get_msgs.js';
+import { getCookie } from './js/get_cookie.js';
+import { check_session } from './js/check_user_logged.js';
 
 let ws;
 var session;
