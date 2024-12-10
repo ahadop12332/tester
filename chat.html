@@ -1,73 +1,68 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/chat.css">
-  <link rel="stylesheet" href="css/animations/loader.css">
-  <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
-  <title>LinkUp</title>
+  <title>LinkUp Chat</title>
 </head>
 <body>
-  <div id="chat_with_someone" class="chat_with_someone" chat_id='0' style="display: none;">
+  <!-- Main Landing Page -->
+  <div class="page-main" id="page-main">
+    <h1 class="linkup-text">LinkUp</h1>
+    <hr class="m-hr">
+    <div class="loader"></div>
+  </div>
+
+  <!-- Chat Window -->
+  <div id="chat_with_someone" class="chat_with_someone" chat_id="0">
     <div id="chatTop">
       <i class="fas fa-arrow-left" id="cbicon" onclick="close_chat()"></i>
       <img src="https://i.imgur.com/mwkxppE.jpeg" class="profile-img-in">
       <div id="chatName">Otazuki</div>
       <i class="fas fa-ellipsis-v" id="c3dot"></i>
     </div>
-    <div id="messageBox">
-      <img src="https://i.imgur.com/mwkxppE.jpeg" class="profile-img-sender-wc">
-      <textarea id="writeText" placeholder="Message"></textarea>
-      <i class="fas fa-paperclip" id="attachmentIcon"></i>
-      <span class="iconify" data-icon="mdi:send" data-width="24" data-height="24" id="sendIcon" onclick="sendMessage()"></span>
-    </div>
     <div id="messages">
       <div id="messageFrom">
         Hi
         <div id="msgTime">9:15</div>
       </div>
-      <div id="messageFrom">
-        Hi bro
-        <div id="msgTime">9:15</div>
-      </div>
-      <div id="messageFrom">
-        Hi bro
-        <div id="msgTime">9:15</div>
-      </div>
       <div id="messageTo">
-        hm
-        <div id="msgTime">9:19</div>
+        Hello!
+        <div id="msgTime">9:16</div>
       </div>
     </div>
+    <div id="messageBox">
+      <textarea id="writeText" placeholder="Type a message"></textarea>
+      <i class="fas fa-paperclip" id="attachmentIcon"></i>
+      <span class="iconify" data-icon="mdi:send" data-width="24" id="sendIcon" onclick="sendMessage()"></span>
+    </div>
   </div>
-  <div class="page-main" id="page-main">
-    <h1 class="linkup-text">LinkUp</h1>
-    <hr class="m-hr">
-    <div class="loader"></div>
-  </div>
-  <div class="others" id="others">
-    <br><br>
-  </div>
-  <script src="js/get_cookie.js"></script>
-  <script src="js/check_user_logged.js"></script>
-  <script src="js/get_msgs.js"></script>
-  <script src="js/chat.js"></script>
+
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      get_chats();
-      get_msgs();
-    });
-    async function updatePage() {
-      const session_stats = await check_session();
-      if (session_stats !== 'redirect') {
-        window.location.href = "/index.html";
+    function close_chat() {
+      document.getElementById('chat_with_someone').classList.remove('active');
+    }
+
+    function sendMessage() {
+      const input = document.getElementById('writeText').value;
+      if (input.trim() !== "") {
+        const message = document.createElement('div');
+        message.id = 'messageTo';
+        message.innerHTML = `${input}<div id='msgTime'>Now</div>`;
+        document.getElementById('messages').appendChild(message);
+        document.getElementById('writeText').value = '';
       }
     }
-    updatePage();
-    
+
+    // Example of showing chat
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        document.getElementById('chat_with_someone').classList.add('active');
+      }, 1000);
+    });
   </script>
 </body>
 </html>
