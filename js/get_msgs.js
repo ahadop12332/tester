@@ -32,7 +32,9 @@ async function get_msgs() {
     return;
   }
   
-  mWs = new WebSocket(ws_url);
+  if (!isChatWsOpen) {
+    mWs = new WebSocket(ws_url);
+  }
   mWs.onopen = () => {
     console.log('Message WebSocket connected');
     mWs.send(JSON.stringify({ session }));
