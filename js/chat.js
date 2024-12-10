@@ -2,7 +2,6 @@ let ws;
 var session;
 let chatState = {};
 var myId = Number(getCookie('session').split('@')[0]);
-var chatList = [];
 
 async function get_chats() {
   const chatlist_url = "wss://linkup-backend-production.up.railway.app/ws/chatlist/";
@@ -98,9 +97,10 @@ document.addEventListener("visibilitychange", () => {
   }
 });
 
+/*
 chatList.forEach((m) => {
   mWs.send(JSON.stringify({'chat_id': chat_id}));
-});
+}); */
 
 const chat = document.getElementById('chat_with_someone');
 const messages = document.getElementById('messages');
@@ -146,6 +146,7 @@ async function go_chat(chat_id) {
         // MAIN -------
         chat.setAttribute('chat_id', chat_id);
         // MESSAGES ------------
+        mWs.send(JSON.stringify({'chat_id': chat_id}));
         mWs.send(JSON.stringify({'chat_id': chat_id}));
         if (msgs && msgs.data && msgs.data.length > 0) {
           let messageHTML = '';
