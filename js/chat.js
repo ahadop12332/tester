@@ -35,6 +35,7 @@ async function get_chats() {
       let chatItems = '';
       document.querySelector('.loader').style.display = 'inline-block';
       for (let chat_id of data.chats) {
+        mWs.send(JSON.stringify({'chat_id': chat_id}));
         try {
           const chatResponse = await fetch(userinfo_url, {
             method: "POST",
