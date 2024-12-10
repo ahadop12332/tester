@@ -146,14 +146,14 @@ async function go_chat(chat_id) {
           let messageHTML = '';
           msgs.data.forEach((m) => {
             if ((m.from && m.from === chat_id) || (m.to && m.to === chat_id)) {
-              if (m.from) {
+              if (m.to) {
                 messageHTML += `<div id='messageTo'>${m.text}</div>`;
               } else {
                 messageHTML += `<div id='messageFrom'>${m.text}</div>`;
               }
             }
           });
-          messages.innerHTML += messageHTML;
+          messages.innerHTML = messageHTML;
         } else {
           console.warn("No messages to display.");
         }
