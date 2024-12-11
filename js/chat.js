@@ -154,6 +154,7 @@ async function go_chat(chat_id) {
           } else {
             console.warn("No messages to display.");
           }
+          await sleep(350);
         }
         // ---------------------------------
       } catch (error) {
@@ -197,6 +198,11 @@ async function sendMessage() {
   } else {
     alert("Text too short");
   }
+}
+// Others --------------------
+
+async function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 document.querySelector("#messageBox textarea").addEventListener("focus", function (e) {
