@@ -107,10 +107,7 @@ const chatName = document.getElementById("chatName");
 const chatPfp = document.querySelector(".profile-img-in");
 const msgVal = document.getElementById('writeText');
 
-var chatClosed = false;
-
 async function close_chat() {
-  chatClosed = true;
   pagemain.style.display = 'block';
   chat.style.display = 'none';
   others.style.display = 'block';
@@ -133,7 +130,6 @@ async function go_chat(chat_id) {
         chatPfp.src = chatState[chat_id]['profile_picture'];
         // MAIN -------
         chat.setAttribute('chat_id', chat_id);
-        chatClosed = false;
         // MESSAGES ------------
         
         mWs.send(JSON.stringify({'chat_id': chat_id}));
@@ -154,8 +150,8 @@ async function go_chat(chat_id) {
           console.warn("No messages to display.");
         }
         // -Others ------------------------
-        if (!chatClosed) {
-          setTimeout(() => go_chat(chat_id), 300); 
+        if (Number(chat.getAttribute("chat_id")) !== 0) {
+          setTimeout(() => go_chat(chat_id), 400); 
         }
         // ---------------------------------
       } catch (error) {
