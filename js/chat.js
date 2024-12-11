@@ -154,7 +154,7 @@ async function go_chat(chat_id) {
           } else {
             console.warn("No messages to display.");
           }
-          await sleep(350);
+          await sleep(300);
         }
         // ---------------------------------
       } catch (error) {
@@ -186,7 +186,6 @@ async function sendMessage() {
       });
       const resJson = await res.json();
       if (resJson.success && resJson.success === "Message sent") {
-        messages.innerHTML += `<div id='messageTo'>${msgVal.value}</div>`;
         msgVal.value = "";
       } else {
         alert(`Error: ${responseText}`);
