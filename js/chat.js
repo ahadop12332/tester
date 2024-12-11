@@ -107,7 +107,10 @@ const chatName = document.getElementById("chatName");
 const chatPfp = document.querySelector(".profile-img-in");
 const msgVal = document.getElementById('writeText');
 
+var chatClosed = false;
+
 async function close_chat() {
+  chatClosed = true;
   pagemain.style.display = 'block';
   chat.style.display = 'none';
   others.style.display = 'block';
@@ -130,28 +133,27 @@ async function go_chat(chat_id) {
         chatPfp.src = chatState[chat_id]['profile_picture'];
         // MAIN -------
         chat.setAttribute('chat_id', chat_id);
+        chatClosed = false
         // MESSAGES ------------
+
+        while (!chatClosed) {
+          mWs.send(JSON.stringify({'chat_id': chat_id}));
         
-        mWs.send(JSON.stringify({'chat_id': chat_id}));
-        
-        if (msgs && msgs.data && msgs.data.length > 0) {
-          let messageHTML = '';
-          msgs.data.forEach((m) => {
-            if ((m.from && m.from === chat_id) || (m.to && m.to === chat_id)) {
-              if (m.to) {
-                messageHTML += `<div id='messageTo'>${m.text}</div>`;
-              } else {
-                messageHTML += `<div id='messageFrom'>${m.text}</div>`;
+          if (msgs && msgs.data && msgs.data.length > 0) {
+            let messageHTML = '';
+            msgs.data.forEach((m) => {
+              if ((m.from && m.from === chat_id) || (m.to && m.to === chat_id)) {
+                if (m.to) {
+                  messageHTML += `<div id='messageTo'>${m.text}</div>`;
+                } else {
+                  messageHTML += `<div id='messageFrom'>${m.text}</div>`;
+                }
               }
-            }
-          });
-          messages.innerHTML = messageHTML;
-        } else {
-          console.warn("No messages to display.");
-        }
-        // -Others ------------------------
-        if (Number(chat.getAttribute("chat_id")) !== 0) {
-          setTimeout(() => go_chat(chat_id), 400); 
+            });
+            messages.innerHTML = messageHTML;
+          } else {
+            console.warn("No messages to display.");
+          }
         }
         // ---------------------------------
       } catch (error) {
