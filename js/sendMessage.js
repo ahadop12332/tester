@@ -1,7 +1,7 @@
 var sWs;
 var isSendMsgWsOpen = false;
 
-async function sendMessage() {
+async function sendMessageWs() {
   if (!isSendMsgWsOpen) {
     const ws_url = "wss://linkup-backend-production.up.railway.app/ws/sendMessage/";
     const session = getCookie('session');
@@ -25,6 +25,14 @@ async function sendMessage() {
       }
     };
 
-    //
+    sWs.onclose = () => {
+      console.warn('sendMessage WebSocket closed, reconnecting...');
+      isSendMsgWsOpen = false;
+      setTimeout(() => sendMessageWs(), 600);
+    };
+
+    sWs.onerror = (error) => {
+      console.error('sendMessage WebSocket error:', error);
+    };
   }
 }
