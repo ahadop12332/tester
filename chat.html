@@ -48,7 +48,7 @@
     document.addEventListener("DOMContentLoaded", () => {
       get_chats();
       get_msgs();
-      sendMessage();
+      sendMessageWs();
     });
     async function updatePage() {
       const session_stats = await check_session();
