@@ -184,22 +184,25 @@ body {
 }
 
 #chatTop {
-  width: 95vw;
+  width: 100.4vw;
   position: fixed;
   margin-bottom: 10px;
   background: white;
-  z-index: 2;
+  right: -1.5px;
+  z-index: 1;
+  top: 0px;
+  background: #16161A;
 }
 
-/* Message box */
+/* Messages */
 
 #messages {
   z-index: 0;
   overflow-y: auto;
   max-height: calc(100vh - 150px);
-  position: relative;
+  position: absolute;
   min-width: 97vw;
-  top: 4.5vh;
+  top: 39px;
 }
 
 #messageFrom {
