@@ -11,7 +11,7 @@ async function sendMessageWs() {
     }
     sWs = new WebSocket(ws_url);
     sWs.onopen = () => {
-      console.log('Message WebSocket connected');
+      console.log('sendMessage WebSocket connected');
       sWs.send(JSON.stringify({ session }));
       isSendMsgWsOpen = true;
     };
@@ -22,6 +22,8 @@ async function sendMessageWs() {
         window.location.href = "/index.html";
       } else if (data.error && data.error === "INVALID RECIPIENT") {
         console.warn("You trying to send message to invalid user!");
+      } else if (data.error) {
+        console.error(data.error)
       }
     };
 
