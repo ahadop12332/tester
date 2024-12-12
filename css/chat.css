@@ -187,17 +187,23 @@ body {
   width: 95vw;
   position: fixed;
   margin-bottom: 10px;
+  background: white;
+  z-index: 2;
 }
-
 
 /* Message box */
 
 #messages {
-  z-index: 2;
+  z-index: 0;
+  overflow-y: auto;
+  max-height: calc(100vh - 150px);
+  position: relative;
+  min-width: 97vw;
+  top: 4.5vh;
 }
 
 #messageFrom {
-  margin-bottom: 5px;
+  margin-bottom: 3.5px;
   position: relative;
   top: 90px;
   left: 15px;
@@ -222,7 +228,7 @@ body {
 
 
 #messageTo {
-  margin-bottom: 5px;
+  margin-bottom: 3.5px;
   position: relative;
   top: 90px;
   left: 145px;
