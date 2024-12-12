@@ -207,7 +207,7 @@ body {
   display: block;
   padding: 8px;
   min-width: 150px;
-  max-width: 60%;
+  max-width: 150px;
   min-height: 15px;
   word-wrap: break-word;
 }
@@ -233,7 +233,7 @@ body {
   display: block;
   padding: 10px;
   min-width: 150px;
-  max-width: 60%;
+  max-width: 150px;
   min-height: 15px;
   word-wrap: break-word;
 }
