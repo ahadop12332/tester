@@ -136,7 +136,6 @@ async function go_chat(chat_id) {
         chat.setAttribute('chat_id', chat_id);
         chatClosed = false
         // MESSAGES ------------
-
         while (!chatClosed) {
           mWs.send(JSON.stringify({'chat_id': chat_id}));
         
@@ -153,9 +152,10 @@ async function go_chat(chat_id) {
             });
             messages.innerHTML = messageHTML;
           } else {
-            console.warn("No messages to display.");
+            // add something if want to show no msgs
+            null
           }
-          await sleep(300);
+          await sleep(365);
         }
         // ---------------------------------
       } catch (error) {
@@ -165,8 +165,6 @@ async function go_chat(chat_id) {
       console.warn(`You are trying to open a invalid id: ${chat_id}`);
       await close_chat()
     }
-  } else {
-    console.log(chat.getAttribute('uid'));
   }
 }
 
