@@ -93,7 +93,7 @@ document.addEventListener("visibilitychange", () => {
     console.log("Trying to refresh ws connections...");
     get_chats();
     get_msgs();
-    sendMessage();
+    sendMessageWs();
   }
 });
 
