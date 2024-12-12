@@ -18,6 +18,13 @@ async function sendMessage() {
 
     sWs.onmessage = (event) => {
       const data = JSON.parse(event.data);
+      if (data.error && data.error === "INVALID SESSION" || data.error && data.error === "INVALID USER") {
+        window.location.href = "/index.html";
+      } else if (data.error && data.error === "INVALID RECIPIENT") {
+        console.warn("You trying to send message to invalid user!");
+      }
     };
+
+    //
   }
 }
