@@ -173,6 +173,7 @@ async function go_chat(chat_id) {
 async function sendMessage() {
   const chatId = chat.getAttribute("chat_id");
   if (msgVal.value.length >= 1) {
+    msgVal.value = "";
     const sendUrl = "https://linkup-backend-production.up.railway.app/send_message/";
     try {
       const res = await fetch(sendUrl, {
@@ -185,9 +186,7 @@ async function sendMessage() {
         }),
       });
       const resJson = await res.json();
-      if (resJson.success && resJson.success === "Message sent") {
-        msgVal.value = "";
-      } else {
+      if (!resJson.success && resJson.success !== "Message sent") {
         alert(`Error: ${responseText}`);
       }
     } catch (error) {
