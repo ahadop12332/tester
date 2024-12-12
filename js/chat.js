@@ -90,9 +90,10 @@ async function get_chats() {
 
 document.addEventListener("visibilitychange", () => {
   if (document.visibilityState === "visible") {
-    console.log("Trying to refresh ws connection....");
+    console.log("Trying to refresh ws connections...");
     get_chats();
     get_msgs();
+    sendMessage();
   }
 });
 
