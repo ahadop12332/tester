@@ -177,7 +177,7 @@ async function sendMessage() {
     const msgTxt = msgVal.value;
     msgVal.value = "";
     try {
-      sWs.send({"to": chatId, "message": msgTxt});
+      sWs.send(JSON.stringify({"to": chatId, "message": msgTxt}));
     } catch (error) {
       console.error(error);
       alert("Failed to send the message.");
