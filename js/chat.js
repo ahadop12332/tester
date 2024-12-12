@@ -176,6 +176,7 @@ async function sendMessage() {
     msgVal.value = "";
     try {
       sWs.send(JSON.stringify({"to": chatId, "message": msgTxt}));
+      messages.scrollTop = messages.scrollHeight;
     } catch (error) {
       console.error(error);
       alert("Failed to send the message.");
