@@ -174,22 +174,10 @@ async function go_chat(chat_id) {
 async function sendMessage() {
   const chatId = chat.getAttribute("chat_id");
   if (msgVal.value.length >= 1) {
+    const msgTxt = msgVal.value;
     msgVal.value = "";
-    const sendUrl = "https://linkup-backend-production.up.railway.app/send_message/";
     try {
-      const res = await fetch(sendUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          session: session,
-          to: chatId,
-          text: msgVal.value,
-        }),
-      });
-      const resJson = await res.json();
-      if (!resJson.success && resJson.success !== "Message sent") {
-        alert(`Error: ${responseText}`);
-      }
+      sWs.send({"to": chatId, "message": msgTxt});
     } catch (error) {
       console.error(error);
       alert("Failed to send the message.");
