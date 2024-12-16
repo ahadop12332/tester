@@ -32,7 +32,7 @@
 
 ---
 
-### Note
+## Note
 ##### I don't have time to write how to setup it. check codes and you need also run backend for it.
 
 Click [here](https://github.com/Otazuki004/LinkUp-Backend) for backend repo
